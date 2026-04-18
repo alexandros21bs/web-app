@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Section Standalone</title>
+  <link rel="stylesheet" href="contact-section.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Noto Sans", sans-serif;
+      background: linear-gradient(160deg, #0b131d, #0f1926);
+      color: #f5ead2;
+    }
+  </style>
+</head>
+<body>
+  <section class="section" id="contact-section-export">
+    <div class="container reveal">
+      <span class="eyebrow">Επικοινωνία</span>
+      <h2 class="section-title">Ας συζητήσουμε την επόμενη ψηφιακή πρωτοβουλία.</h2>
+      <p class="section-lead">
+        Είμαστε διαθέσιμοι για συνεργασίες που αφορούν περιφερειακή προβολή, τουριστική ανάδειξη, πολιτιστική ταυτότητα και στρατηγικό branding.
+      </p>
+
+      <div class="contact-grid">
+        <article class="contact-card">
+          <h3>Στοιχεία Επικοινωνίας</h3>
+          <p>Το Digital Achaia υποστηρίζεται τεχνολογικά και στρατηγικά από τη Web Host Pro Aigialeia, την ψηφιακή δύναμη πίσω από το οικοσύστημα.</p>
+          <ul class="contact-list">
+            <li>Ηλ. Ταχυδρομείο: hello@digitalachaia.gr</li>
+            <li>Τηλέφωνο: +30 26910 00000</li>
+            <li>Έδρα: Αιγιάλεια, Αχαΐα</li>
+            <li>Συνεργασίες: Δήμοι, φορείς, επιχειρήσεις, πολιτιστικές ομάδες</li>
+          </ul>
+        </article>
+
+        <form class="contact-form" action="#" method="post" aria-label="Φόρμα επικοινωνίας">
+          <div class="form-group">
+            <label for="contactName">Ονοματεπώνυμο</label>
+            <input type="text" id="contactName" name="name" placeholder="Το όνομά σας" required>
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">Email</label>
+            <input type="email" id="contactEmail" name="email" placeholder="name@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">Μήνυμα</label>
+            <textarea id="contactMessage" name="message" placeholder="Πείτε μας για το project ή την πρωτοβουλία σας" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Αποστολή Μηνύματος</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="contact-section.js"></script>
+</body>
+</html>

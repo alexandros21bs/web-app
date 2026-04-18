@@ -1,33 +1,142 @@
 import {
-  Monitor,
-  ShoppingCart,
-  Server,
-  Wrench,
-  Search,
+  Globe,
+  MonitorSmartphone,
+  ShoppingBag,
+  ServerCog,
+  ShieldCheck,
+  SearchCheck,
   Megaphone,
   Palette,
-  Bot,
-  ShieldCheck,
+  Wrench,
   ArrowRight,
+  ArrowLeft,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Seo from '../components/common/Seo'
-import { services } from '../data/services'
-
-const icons = {
-  websites: Monitor,
-  eshops: ShoppingCart,
-  hosting: Server,
-  support: Wrench,
-  seo: Search,
-  marketing: Megaphone,
-  branding: Palette,
-  automation: Bot,
-  security: ShieldCheck,
-}
 
 export default function ServicesPage() {
+  const navigate = useNavigate()
+
+  const serviceCategories = [
+    {
+      key: 'web-ecommerce',
+      Icon: MonitorSmartphone,
+      label: 'Κατηγορία 1',
+      title: 'Web & eCommerce',
+      items: [
+        {
+          key: 'corporate-websites',
+          Icon: MonitorSmartphone,
+          title: 'Εταιρικές ιστοσελίδες',
+          text: 'Σχεδιάζουμε εταιρικές ιστοσελίδες υψηλής αισθητικής που αποτυπώνουν επαγγελματισμό, αξιοπιστία και σύγχρονη επιχειρηματική ταυτότητα. Κάθε project δομείται με στόχο να δημιουργεί δυνατή πρώτη εντύπωση, καθαρή πλοήγηση και ουσιαστική εμπειρία για τον επισκέπτη.',
+        },
+        {
+          key: 'landing-pages',
+          Icon: Globe,
+          title: 'Landing pages',
+          text: 'Δημιουργούμε στοχευμένες landing pages με ξεκάθαρο μήνυμα, δυνατή αισθητική και στρατηγική δομή μετατροπών. Είναι ιδανικές για υπηρεσίες, προσφορές, καμπάνιες και projects που χρειάζονται άμεση ανταπόκριση και επαγγελματική παρουσίαση.',
+        },
+        {
+          key: 'eshop-build',
+          Icon: ShoppingBag,
+          title: 'Κατασκευή eShop',
+          text: 'Αναπτύσσουμε σύγχρονα eShop που συνδυάζουν λειτουργικότητα, εμπορική λογική και δυνατή οπτική παρουσία. Δίνουμε έμφαση στην εμπειρία χρήστη, στη σωστή παρουσίαση των προϊόντων και στη δημιουργία μιας αξιόπιστης βάσης για online πωλήσεις.',
+        },
+        {
+          key: 'services-products-presentation',
+          Icon: Globe,
+          title: 'Παρουσίαση υπηρεσιών και προϊόντων',
+          text: 'Οργανώνουμε και αναδεικνύουμε υπηρεσίες και προϊόντα με καθαρή δομή, ισχυρή εικόνα και σωστή επικοινωνία του οφέλους προς τον πελάτη. Στόχος είναι η επαγγελματική παρουσίαση που εμπνέει εμπιστοσύνη και ενισχύει την εμπορική αξία της επιχείρησης.',
+        },
+      ],
+    },
+    {
+      key: 'hosting-technical-care',
+      Icon: ServerCog,
+      label: 'Κατηγορία 2',
+      title: 'Hosting & Technical Care',
+      items: [
+        {
+          key: 'web-hosting',
+          Icon: ServerCog,
+          title: 'Web hosting / φιλοξενία',
+          text: 'Παρέχουμε λύσεις φιλοξενίας που στηρίζουν μια σταθερή, γρήγορη και αξιόπιστη online παρουσία. Η σωστή τεχνική βάση είναι το θεμέλιο κάθε σοβαρού ψηφιακού project και φροντίζουμε να καλύπτει τις πραγματικές ανάγκες κάθε επιχείρησης.',
+        },
+        {
+          key: 'technical-support',
+          Icon: Wrench,
+          title: 'Τεχνική υποστήριξη και συντήρηση',
+          text: 'Αναλαμβάνουμε τη συνεχή τεχνική υποστήριξη και τη συντήρηση της ιστοσελίδας σας, ώστε να παραμένει ασφαλής, ενημερωμένη και πλήρως λειτουργική. Με σταθερή παρακολούθηση και πρακτική φροντίδα, διασφαλίζουμε την ομαλή πορεία του project σας.',
+        },
+        {
+          key: 'optimizations-updates',
+          Icon: ShieldCheck,
+          title: 'Βελτιστοποιήσεις και updates',
+          text: 'Βελτιώνουμε την ταχύτητα, τη δομή και τη συνολική απόδοση μιας ιστοσελίδας μέσα από ουσιαστικές παρεμβάσεις και απαραίτητα updates. Στόχος μας είναι ένα πιο σύγχρονο, πιο αποδοτικό και πιο ανταγωνιστικό ψηφιακό αποτέλεσμα.',
+        },
+      ],
+    },
+    {
+      key: 'visibility-growth',
+      Icon: SearchCheck,
+      label: 'Κατηγορία 3',
+      title: 'Visibility & Growth',
+      items: [
+        {
+          key: 'seo-structure',
+          Icon: SearchCheck,
+          title: 'SEO και δομή online παρουσίας',
+          text: 'Χτίζουμε σωστές βάσεις για μια οργανωμένη και επαγγελματική online παρουσία, με έμφαση στη δομή του site, στο περιεχόμενο και στη συνολική εικόνα του brand. Η στρατηγική αυτή ενισχύει την αναγνωρισιμότητα και δημιουργεί καλύτερες προϋποθέσεις προβολής.',
+        },
+        {
+          key: 'local-seo',
+          Icon: Globe,
+          title: 'Local SEO κατεύθυνση',
+          text: 'Ενισχύουμε την τοπική ψηφιακή παρουσία επιχειρήσεων που θέλουν να ξεχωρίζουν στην περιοχή τους και να γίνονται πιο εύκολα ορατές από το κοινό που τις αναζητά. Η τοπική στόχευση αποτελεί βασικό εργαλείο ανάπτυξης για κάθε δραστηριότητα με γεωγραφική αναφορά.',
+        },
+        {
+          key: 'digital-marketing',
+          Icon: Megaphone,
+          title: 'Digital marketing',
+          text: 'Σχεδιάζουμε στοχευμένες ενέργειες digital marketing που αναβαθμίζουν την προβολή, ενισχύουν την αναγνωρισιμότητα και υποστηρίζουν την ανάπτυξη μιας επιχείρησης στον ψηφιακό χώρο. Κάθε προσέγγιση προσαρμόζεται στον χαρακτήρα, στους στόχους και στις προτεραιότητες του brand.',
+        },
+        {
+          key: 'social-support',
+          Icon: Megaphone,
+          title: 'Social media support',
+          text: 'Υποστηρίζουμε την παρουσία σας στα social media με δημιουργική κατεύθυνση, επαγγελματική αισθητική και περιεχόμενο που ταιριάζει στην εικόνα της επιχείρησής σας. Στόχος είναι μια πιο συνεπής, πιο ελκυστική και πιο ουσιαστική επικοινωνία με το κοινό σας.',
+        },
+      ],
+    },
+    {
+      key: 'branding-image',
+      Icon: Palette,
+      label: 'Κατηγορία 4',
+      title: 'Branding & Image',
+      items: [
+        {
+          key: 'branding-identity',
+          Icon: Palette,
+          title: 'Branding και οπτική ταυτότητα',
+          text: 'Διαμορφώνουμε ισχυρή οπτική ταυτότητα που δίνει συνέπεια, χαρακτήρα και αναγνωρισιμότητα σε μια επιχείρηση. Από τη συνολική αισθητική μέχρι τις λεπτομέρειες της εικόνας, δημιουργούμε brands με ξεχωριστή παρουσία και επαγγελματικό αποτύπωμα.',
+        },
+        {
+          key: 'creative-graphics',
+          Icon: Palette,
+          title: 'Δημιουργικά γραφιστικά',
+          text: 'Σχεδιάζουμε δημιουργικά γραφιστικά που υποστηρίζουν την προβολή, την επικοινωνία και τη συνοχή της εικόνας μιας επιχείρησης σε κάθε μέσο. Εστιάζουμε σε καθαρό design, προσεγμένη αισθητική και σύγχρονη οπτική αντίληψη.',
+        },
+        {
+          key: 'digital-image-strategy',
+          Icon: Globe,
+          title: 'Στρατηγική ψηφιακής εικόνας',
+          text: 'Οργανώνουμε τη συνολική ψηφιακή εικόνα μιας επιχείρησης, ώστε site, social media, branding και περιεχόμενο να λειτουργούν ενιαία και με ξεκάθαρη κατεύθυνση. Έτσι δημιουργείται μια πιο δυνατή ταυτότητα, πιο σταθερή παρουσία και πιο ολοκληρωμένη εμπειρία προς το κοινό.',
+        },
+      ],
+    },
+  ]
+
   const gridVariants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
@@ -46,84 +155,169 @@ export default function ServicesPage() {
       />
 
       <div className="container-main">
-        <div className="max-w-3xl">
+        <div className="glass-strong page-glow soft-grid relative overflow-hidden rounded-[36px] p-8 md:p-12">
+          <div className="absolute -left-8 top-2 h-52 w-52 rounded-full bg-cyan-300/22 blur-3xl" />
+          <div className="absolute -right-10 bottom-3 h-56 w-56 rounded-full bg-amber-400/14 blur-3xl" />
+
+          <button onClick={() => navigate(-1)} className="back-btn mb-4 inline-flex items-center gap-2 text-sm text-white/50 transition hover:text-white/80">
+            <ArrowLeft size={16} /> Πίσω
+          </button>
+
           <p className="text-sm uppercase tracking-[0.18em] text-cyan-200/80">
             Υπηρεσίες
           </p>
-          <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
-            Υπηρεσίες με στρατηγική συνέπεια, premium παρουσίαση και τεχνική αξιοπιστία
+          <h1 className="mt-4 max-w-5xl text-4xl font-semibold text-[#67E8F9] md:text-6xl">
+            Ψηφιακές λύσεις με πιο καθαρή στρατηγική και σύγχρονη αισθητική
           </h1>
           <p className="mt-6 text-lg leading-8 text-white/70">
-            Η Web Host Pro σχεδιάζει και υλοποιεί digital λύσεις από το
-            positioning μέχρι την τεχνική υποδομή, με στόχο σοβαρή και
-            επεκτάσιμη online παρουσία.
+            Η <span className="text-[#67E8F9]">Web Host Pro</span> προσφέρει ολοκληρωμένες λύσεις για επαγγελματίες, επιχειρήσεις και projects που χρειάζονται σύγχρονη εικόνα, σωστή τεχνική βάση, ουσιαστική προβολή και πιο οργανωμένη online παρουσία.
+          </p>
+        </div>
+
+        <div className="relative mt-10 overflow-hidden rounded-[30px] border border-amber-300/12 bg-gradient-to-b from-white/[0.035] to-white/[0.015] p-7 backdrop-blur-xl md:p-9">
+          <div className="pointer-events-none absolute -left-10 top-0 h-32 w-32 rounded-full bg-amber-300/14 blur-3xl" />
+          <div className="pointer-events-none absolute -right-10 bottom-0 h-36 w-36 rounded-full bg-cyan-300/14 blur-3xl" />
+
+          <div className="relative z-10">
+          <h2 className="text-3xl font-semibold text-[#67E8F9] md:text-4xl">
+            Τι είναι η <span className="text-[#67E8F9]">Web Host Pro</span>
+          </h2>
+          <p className="mt-4 leading-8 text-white/70">
+            Η <span className="text-[#67E8F9]">Web Host Pro</span> είναι μια σύγχρονη δημιουργική και τεχνική κατεύθυνση για επαγγελματίες, επιχειρήσεις και digital projects που χρειάζονται σοβαρή online παρουσία, καθαρή αισθητική, σωστή τεχνική βάση και στρατηγική ανάπτυξης.
+          </p>
+          <p className="mt-4 leading-8 text-white/70">
+            Συνδυάζει web design, eShop λύσεις, hosting, υποστήριξη, branding, digital προβολή και οργανωμένη online εικόνα, με στόχο να προσφέρει πιο σωστή, πιο επαγγελματική και πιο ουσιαστική παρουσία στο διαδίκτυο.
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-2">
-            <span className="trust-label">Στρατηγική παρουσίαση</span>
-            <span className="trust-label">Μοντέρνα online εικόνα</span>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {[
+              'Σύγχρονες ιστοσελίδες & eShop',
+              'Hosting & τεχνική σταθερότητα',
+              'SEO & online παρουσία',
+              'Branding, campaigns & digital προβολή',
+            ].map((item) => (
+              <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white/82">
+                {item}
+              </div>
+            ))}
           </div>
-
-          <div className="cta-row mt-7">
-            <Link to="/contact" className="premium-btn btn btn-primary">
-              Συζητήστε το project σας
-            </Link>
-            <Link to="/projects" className="premium-btn btn btn-secondary">
-              Δείτε έργα
-            </Link>
           </div>
         </div>
 
         <motion.div
-          className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
-          variants={gridVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          className="relative mt-12 overflow-hidden rounded-[30px] border border-amber-300/12 bg-gradient-to-b from-white/[0.035] to-white/[0.015] p-6 md:p-8"
+          animate={{
+            boxShadow: [
+              '0 14px 34px rgba(0,0,0,0.22)',
+              '0 18px 40px rgba(212,168,79,0.14)',
+              '0 14px 34px rgba(0,0,0,0.22)',
+            ],
+          }}
+          transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          {services.map((service) => {
-            const Icon = icons[service.key]
-            return (
-              <motion.div key={service.key} className="glass service-card rounded-[28px] p-6" variants={cardVariants}>
-                <div className="icon-shell inline-flex p-3">
-                  <Icon size={20} />
-                </div>
-                <p className="mt-5 text-xs uppercase tracking-[0.16em] text-cyan-100/70">Service Module</p>
-                <h3 className="mt-2 text-xl font-semibold">{service.title}</h3>
-                <p className="mt-3 leading-7 text-white/65">{service.text}</p>
-                <Link to="/contact" className="inline-cta mt-5">
-                  Ζητήστε παρουσίαση <ArrowRight size={14} />
-                </Link>
-              </motion.div>
-            )
-          })}
+          <motion.div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(212,168,79,0.13),transparent_38%),radial-gradient(circle_at_100%_100%,rgba(103,232,249,0.12),transparent_36%)]"
+            animate={{ opacity: [0.55, 0.95, 0.55] }}
+            transition={{ duration: 4.6, repeat: Infinity, ease: 'easeInOut' }}
+          />
+
+          <div className="relative z-10 mb-8 max-w-4xl">
+            <p className="text-sm uppercase tracking-[0.18em] text-amber-300/85">
+              Main Services Structure
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-[#67E8F9] md:text-4xl">
+              Όλες οι υπηρεσίες οργανωμένες σε 4 βασικές κατηγορίες
+            </h2>
+            <p className="mt-4 leading-8 text-white/68">
+              Ξεκάθαρη δομή υπηρεσιών για να γνωρίζεις ακριβώς πώς η <span className="text-[#67E8F9]">Web Host Pro</span> καλύπτει web, τεχνική υποδομή, προβολή και συνολική ψηφιακή εικόνα.
+            </p>
+          </div>
+
+          <motion.div
+            className="relative z-10 grid gap-6"
+            variants={gridVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.08 }}
+          >
+            {serviceCategories.map((category) => {
+              const CategoryIcon = category.Icon
+              return (
+                <motion.article
+                  key={category.key}
+                  className="rounded-[30px] border border-white/10 bg-[#0d1828]/65 p-6 backdrop-blur-xl md:p-8"
+                  variants={cardVariants}
+                >
+                  <div className="flex flex-wrap items-center gap-4">
+                    <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/12 bg-[#111d31]">
+                      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#67E8F9]/24 to-amber-300/12" />
+                      <CategoryIcon size={22} strokeWidth={1.9} className="relative z-10 text-[#67E8F9]" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.16em] text-amber-200/78">
+                        {category.label}
+                      </p>
+                      <h3 className="text-2xl font-semibold text-[#67E8F9] md:text-3xl">
+                        {category.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 grid gap-4 md:grid-cols-2">
+                    {category.items.map((item) => {
+                      const ItemIcon = item.Icon
+                      return (
+                        <div
+                          key={item.key}
+                          className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-200/25 hover:bg-white/[0.06] hover:shadow-[0_14px_34px_rgba(0,0,0,0.25),0_0_0_1px_rgba(103,232,249,0.1)]"
+                        >
+                          <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-cyan-200/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+                          <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-[#111b2b] text-[#67E8F9]">
+                            <ItemIcon size={18} strokeWidth={1.8} />
+                          </div>
+                          <h4 className="text-xl font-semibold text-[#67E8F9]">
+                            {item.title}
+                          </h4>
+                          <p className="mt-3 leading-7 text-white/65">
+                            {item.text}
+                          </p>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </motion.article>
+              )
+            })}
+          </motion.div>
         </motion.div>
 
         <motion.div
-          className="mt-16 grid gap-5 md:grid-cols-3"
+          className="relative mt-16 overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl md:p-7"
           variants={gridVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(103,232,249,0.12),transparent_35%),radial-gradient(circle_at_95%_100%,rgba(212,168,79,0.12),transparent_35%)]" />
+          <div className="relative z-10 grid gap-5 md:grid-cols-3">
           {[
             {
               step: '01',
               title: 'Σχεδιασμός',
               subtitle: 'Strategy Alignment',
-              text: 'Αποσαφηνίζουμε στόχο, κοινό και business direction πριν από κάθε δημιουργική ή τεχνική απόφαση.',
+              text: 'Καταλαβαίνουμε τον στόχο, το brand και την αγορά πριν χτιστεί η τελική παρουσία.',
             },
             {
               step: '02',
               title: 'Υλοποίηση',
               subtitle: 'Execution Layer',
-              text: 'Χτίζουμε δομή, UI και τεχνική υποδομή με συνέπεια brand, καθαρή εμπειρία και έμφαση στην απόδοση.',
+              text: 'Δημιουργούμε καθαρή εμπειρία, σωστή δομή περιεχομένου και μοντέρνο UI.',
             },
             {
               step: '03',
               title: 'Υποστήριξη',
               subtitle: 'Growth Support',
-              text: 'Προχωράμε με συνεχή βελτίωση, updates και λειτουργική παρακολούθηση ώστε το project να εξελίσσεται με σταθερότητα.',
+              text: 'Βελτιώσεις, updates, τεχνική παρακολούθηση και επόμενο βήμα ανάπτυξης.',
             },
           ].map((item) => (
             <motion.div key={item.title} className="glass service-card rounded-[28px] p-6" variants={cardVariants}>
@@ -131,31 +325,39 @@ export default function ServicesPage() {
                 Step {item.step}
               </p>
               <p className="mt-2 text-sm text-white/45">{item.subtitle}</p>
-              <h3 className="text-xl font-semibold">{item.title}</h3>
+              <h3 className="text-xl font-semibold text-[#67E8F9]">{item.title}</h3>
               <p className="mt-3 leading-7 text-white/65">{item.text}</p>
             </motion.div>
           ))}
+          </div>
         </motion.div>
 
-        <div className="section-end-block">
-          <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/75">Next Step</p>
-          <h2 className="mt-3 text-2xl font-semibold md:text-3xl">
-            Επιλέξτε υπηρεσίες και ας οργανώσουμε το project σας
-          </h2>
-          <p className="mt-3 max-w-3xl text-white/65">
-            Αν χρειάζεστε website, eShop, redesign ή hosting υποστήριξη,
-            μπορούμε να ξεκινήσουμε με ένα σύντομο brief και καθαρό πλάνο υλοποίησης.
-          </p>
-          <div className="cta-row mt-6">
-            <Link to="/contact" className="premium-btn btn btn-primary">
-              Συζητήστε το project σας
-            </Link>
-            <Link to="/projects" className="premium-btn btn btn-secondary">
-              Δείτε έργα
-            </Link>
-            <Link to="/digital-achaia" className="btn-inline">
-              Ανακαλύψτε την κατεύθυνση <ArrowRight size={14} />
-            </Link>
+        <div className="relative mt-14 overflow-hidden rounded-[30px] border border-amber-300/12 bg-gradient-to-b from-white/[0.035] to-white/[0.015] p-7 backdrop-blur-xl md:p-9">
+          <div className="pointer-events-none absolute -left-10 top-0 h-40 w-40 rounded-full bg-cyan-300/14 blur-3xl" />
+          <div className="pointer-events-none absolute -right-10 bottom-0 h-44 w-44 rounded-full bg-amber-300/14 blur-3xl" />
+
+          <div className="section-end-block relative z-10 mt-0 rounded-none border-none bg-transparent p-0 shadow-none">
+            <p className="text-xs tracking-[0.12em] text-cyan-100/75">Έτοιμος για το νέο σου project;</p>
+            <h2 className="mt-3 text-2xl font-semibold text-[#67E8F9] md:text-3xl">
+              Θέλεις μια πιο οργανωμένη και επαγγελματική ψηφιακή παρουσία;
+            </h2>
+            <p className="mt-3 max-w-3xl text-white/65">
+              Η <span className="text-[#67E8F9]">Web Host Pro</span> προσφέρει τη βάση, την αισθητική και την τεχνική υποστήριξη που χρειάζεται μια σύγχρονη επιχείρηση για να παρουσιαστεί σωστά online.
+            </p>
+            <div className="cta-row mt-6">
+              <Link to="/contact" className="premium-btn btn btn-primary">
+                Συζητήστε το project σας
+              </Link>
+              <Link to="/contact" className="premium-btn btn btn-secondary">
+                Επικοινωνία
+              </Link>
+              <Link to="/contact" className="btn-inline inline-flex !border-amber-300/60 !bg-amber-300/18 !text-amber-100 !shadow-[0_10px_26px_rgba(212,168,79,0.18)] hover:!bg-amber-300/34 hover:!text-white hover:!shadow-[0_14px_30px_rgba(212,168,79,0.24)]">
+                Ζήτα προσφορά <ArrowRight size={14} />
+              </Link>
+              <Link to="/contact" className="btn-inline inline-flex !border-[#67E8F9]/60 !bg-[#67E8F9]/16 !text-[#67E8F9] !shadow-[0_10px_26px_rgba(103,232,249,0.18)] hover:!bg-[#67E8F9]/30 hover:!text-white hover:!shadow-[0_14px_30px_rgba(103,232,249,0.24)]">
+                Πες μας την ιδέα σου <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

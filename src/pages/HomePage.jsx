@@ -1,61 +1,213 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  Monitor,
-  ShoppingCart,
-  Server,
-  Wrench,
-  Search,
+  ArrowRight,
+  MonitorSmartphone,
+  ServerCog,
+  ShieldCheck,
+  SearchCheck,
   Megaphone,
   Palette,
-  Bot,
-  ShieldCheck,
-  ArrowRight,
-  Mail,
 } from 'lucide-react'
 import Seo from '../components/common/Seo'
-import { services } from '../data/services'
-import { projects } from '../data/projects'
-
-const MotionLink = motion(Link)
-
-const icons = {
-  websites: Monitor,
-  eshops: ShoppingCart,
-  hosting: Server,
-  support: Wrench,
-  seo: Search,
-  marketing: Megaphone,
-  branding: Palette,
-  automation: Bot,
-  security: ShieldCheck,
-}
-
-const projectPresentation = {
-  'Digital Achaia': {
-    badge: 'Featured Initiative',
-    visual: 'Regional Identity Visual',
-    title: 'Digital Achaia Initiative',
-    category: 'Regional Identity Strategy',
-    text: 'Στρατηγική ψηφιακή πρωτοβουλία για ταυτότητα τόπου, πολιτισμό και σύγχρονη τουριστική αφήγηση.',
-  },
-  'Discover Diakopto': {
-    badge: 'Selected Concept',
-    visual: 'Destination Storyboard',
-    title: 'Discover Diakopto Concept',
-    category: 'Local Destination Showcase',
-    text: 'Concept για τοπικό destination με έμφαση σε εμπειρία επισκέπτη, διαδρομές και premium παρουσίαση περιεχομένου.',
-  },
-  'Destination / Route Concepts': {
-    badge: 'Creative Direction',
-    visual: 'Route Design Mock',
-    title: 'Destination & Route Concepts',
-    category: 'Tourism Content Systems',
-    text: 'Πλαίσιο για θεματικές διαδρομές, curated guides και branded ψηφιακά concepts με στρατηγική συνοχή.',
-  },
-}
 
 export default function HomePage() {
+  const [previewModal, setPreviewModal] = useState({ open: false, index: 0, mode: 'live' })
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const subscriberEmail = String(formData.get('subscriberEmail') || '').trim()
+    if (!subscriberEmail) return
+
+    const recipients = 'info@webhostpro.gr,alexandros12bs@gmail.com'
+    const subject = encodeURIComponent('Newsletter Signup - Web Host Pro')
+    const body = encodeURIComponent(
+      `Νέα εγγραφή newsletter.\n\nEmail συνδρομητή: ${subscriberEmail}\n\nSource: HomePage Newsletter`
+    )
+
+    window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`
+    e.currentTarget.reset()
+  }
+
+  const openPreviewModal = (index) => {
+    setPreviewModal({ open: true, index, mode: 'live' })
+  }
+
+  const closePreviewModal = () => {
+    setPreviewModal((prev) => ({ ...prev, open: false }))
+  }
+
+  const homeServices = [
+    {
+      key: 'websites-eshop',
+      title: 'Ιστοσελίδες & eShop',
+      text: 'Κατασκευή σύγχρονων εταιρικών ιστοσελίδων και ηλεκτρονικών καταστημάτων με premium αισθητική, καθαρή δομή, mobile-first λογική και σωστή εμπειρία χρήστη.',
+      accent: 'from-cyan-300/25 to-cyan-300/5',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6 text-cyan-100" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="11" rx="2.3" />
+          <path d="M8 20h8" />
+          <path d="M12 15v5" />
+          <path d="M6.2 11.2h11.6" />
+          <path d="M8.4 8.2h7.2" />
+          <circle cx="17.2" cy="18.2" r="2.1" />
+          <path d="M15 16.1h-1.4l-.6-1.3H9" />
+        </svg>
+      ),
+    },
+    {
+      key: 'hosting-domain-ssl',
+      title: 'Hosting, Domains, SSL & Μεταφορές',
+      text: 'Φιλοξενία ιστοσελίδων, κατοχύρωση domain, πιστοποιητικά SSL και μεταφορά website με τεχνική σταθερότητα και σωστή βάση για την online λειτουργία της επιχείρησής σου.',
+      accent: 'from-amber-300/25 to-amber-300/5',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6 text-amber-100" aria-hidden="true">
+          <ellipse cx="8" cy="6.2" rx="4.5" ry="2.2" />
+          <path d="M3.5 6.2v4.4C3.5 11.8 5.5 13 8 13s4.5-1.2 4.5-2.4V6.2" />
+          <path d="M3.5 10.6v4.4C3.5 16.2 5.5 17.4 8 17.4s4.5-1.2 4.5-2.4v-4.4" />
+          <circle cx="16.9" cy="8.6" r="3.3" />
+          <path d="M13.6 8.6h6.6" />
+          <path d="M16.9 5.3c1 1 .9 4.2 0 6.6" />
+          <path d="M20.7 16.9l-3.8 3.1-3.8-3.1V13.8l3.8-1.5 3.8 1.5v3.1Z" />
+          <path d="m15.5 16.9 1 1.1 2-2.3" />
+        </svg>
+      ),
+    },
+    {
+      key: 'support-security-performance',
+      title: 'Τεχνική Υποστήριξη, Security & Performance',
+      text: 'Συντήρηση, updates, βελτιστοποιήσεις ταχύτητας, βασική προστασία, monitoring και πρακτική τεχνική υποστήριξη για ασφαλή και σταθερή καθημερινή λειτουργία.',
+      accent: 'from-cyan-300/25 to-amber-300/10',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6 text-cyan-100" aria-hidden="true">
+          <path d="m4 14 3.5-3.5 2.3 2.3 4.6-4.6" />
+          <path d="M16.8 7.4h2.9v2.9" />
+          <path d="M5.7 19.4h5.6" />
+          <path d="M8.5 16.6v2.8" />
+          <path d="m10.8 7.5 1.3-2.3 2.6 1.5-1.3 2.3" />
+          <path d="m9.8 9.3 2.6 1.5" />
+          <path d="M17.4 20.2s3.1-1.6 3.1-3.9v-3.1l-3.1-1.2-3.1 1.2v3.1c0 2.3 3.1 3.9 3.1 3.9Z" />
+        </svg>
+      ),
+    },
+    {
+      key: 'seo-google-presence',
+      title: 'SEO, Google SEO & Online Παρουσία',
+      text: 'Βελτιστοποίηση δομής και περιεχομένου για καλύτερη εικόνα στη Google, local SEO κατεύθυνση, σωστή ψηφιακή οργάνωση και πιο δυνατή online παρουσία.',
+      accent: 'from-cyan-200/20 to-cyan-300/5',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6 text-cyan-100" aria-hidden="true">
+          <circle cx="9" cy="9" r="4.6" />
+          <path d="m12.5 12.5 3.5 3.5" />
+          <path d="M4 18.5h6" />
+          <path d="M4 15.5h4" />
+          <path d="m14.8 18.7 2.1-2.1 1.7 1.7 3.2-3.2" />
+          <circle cx="20.3" cy="8.2" r="2.4" />
+          <circle cx="20.3" cy="8.2" r="0.9" />
+        </svg>
+      ),
+    },
+    {
+      key: 'marketing-campaigns-content',
+      title: 'Digital Marketing, Campaigns & Content Creation',
+      text: 'Σχεδιασμός digital καμπανιών, δημιουργία περιεχομένου και προωθητικές ενέργειες με εμπορική και δημιουργική κατεύθυνση για ανάπτυξη προβολής και αποτελέσματος.',
+      accent: 'from-amber-300/20 to-cyan-200/10',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6 text-amber-100" aria-hidden="true">
+          <path d="M4 12.4V9.1l9.2-3.1v11L4 13.9v-1.5Z" />
+          <path d="M13.2 8.2h2.3a2.6 2.6 0 0 1 2.6 2.6v1.4" />
+          <path d="m6.4 14.8 1.3 3.4h2.6l-1.2-4" />
+          <path d="M17.2 6.2 18 4.6l.8 1.6 1.7.8-1.7.8-.8 1.6-.8-1.6-1.7-.8 1.7-.8Z" />
+          <rect x="14.2" y="13.8" width="6.3" height="5.1" rx="1.1" />
+          <path d="M15.6 15.9h3.5" />
+          <path d="M15.6 17.3h2.2" />
+        </svg>
+      ),
+    },
+    {
+      key: 'social-branding-design',
+      title: 'Social Media, Branding & Design',
+      text: 'Διαχείριση εικόνας στα social media, οπτική ταυτότητα, δημιουργικά, παρουσιάσεις και ενιαία επαγγελματική αισθητική για web και digital παρουσία.',
+      accent: 'from-cyan-200/20 to-amber-300/10',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6 text-cyan-100" aria-hidden="true">
+          <path d="M4.6 15.8a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4Z" />
+          <path d="M18.9 7.8a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4Z" />
+          <path d="M19.7 20.6a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4Z" />
+          <path d="m6.6 12.4 10.1-5.2" />
+          <path d="m6.6 14.4 10.9 3.1" />
+          <path d="m10.1 19.2 6.5-12" />
+          <path d="m10.6 6.1 5.3 5.3-6.6 2.5 1.3-7.8Z" />
+        </svg>
+      ),
+    },
+  ]
+
+  const homeServicesLucide = [
+    {
+      key: 'lucide-websites-eshop',
+      Icon: MonitorSmartphone,
+      smallLabel: 'Web Development',
+      title: 'Websites & eShop',
+      text: 'Σύγχρονες ιστοσελίδες και online καταστήματα με premium αισθητική, σωστή δομή, mobile-first λογική και επαγγελματική βάση ανάπτυξης.',
+      cta: 'Δες λύσεις web & eShop',
+      accentClass: 'text-[#67E8F9]',
+      gradientClass: 'from-[#67E8F9]/25 to-[#67E8F9]/5',
+    },
+    {
+      key: 'lucide-hosting-domains-ssl',
+      Icon: ServerCog,
+      smallLabel: 'Hosting Infrastructure',
+      title: 'Hosting, Domains & SSL',
+      text: 'Φιλοξενία ιστοσελίδων, domain names, SSL πιστοποιητικά και μεταφορές website με σταθερότητα, ασφάλεια και τεχνική αξιοπιστία.',
+      cta: 'Δες υπηρεσίες φιλοξενίας',
+      accentClass: 'text-[#67E8F9]',
+      gradientClass: 'from-[#67E8F9]/25 to-[#67E8F9]/5',
+    },
+    {
+      key: 'lucide-support-security-performance',
+      Icon: ShieldCheck,
+      smallLabel: 'Technical Care',
+      title: 'Support, Security & Performance',
+      text: 'Συντήρηση, updates, monitoring, βασική προστασία και βελτιστοποιήσεις για ταχύτητα, ασφάλεια και ομαλή καθημερινή λειτουργία.',
+      cta: 'Δες τεχνική υποστήριξη',
+      accentClass: 'text-[#67E8F9]',
+      gradientClass: 'from-[#67E8F9]/25 to-[#67E8F9]/5',
+    },
+    {
+      key: 'lucide-seo-google-presence',
+      Icon: SearchCheck,
+      smallLabel: 'Visibility & Structure',
+      title: 'SEO & Google Presence',
+      text: 'SEO βελτιστοποίηση, Google SEO, local στόχευση και σωστή δομή περιεχομένου για καλύτερη προβολή και ισχυρότερη online παρουσία.',
+      cta: 'Δες στρατηγική SEO',
+      accentClass: 'text-[#67E8F9]',
+      gradientClass: 'from-[#67E8F9]/25 to-[#67E8F9]/5',
+    },
+    {
+      key: 'lucide-campaigns-content',
+      Icon: Megaphone,
+      smallLabel: 'Digital Promotion',
+      title: 'Campaigns & Content Creation',
+      text: 'Δημιουργία καμπανιών, εμπορική κατεύθυνση και παραγωγή περιεχομένου που βοηθά την επιχείρηση να προβάλλεται σωστά και να ξεχωρίζει.',
+      cta: 'Δες προωθητικές λύσεις',
+      accentClass: 'text-[#67E8F9]',
+      gradientClass: 'from-[#67E8F9]/25 to-[#67E8F9]/5',
+    },
+    {
+      key: 'lucide-social-branding-design',
+      Icon: Palette,
+      smallLabel: 'Brand Identity',
+      title: 'Social Media, Branding & Design',
+      text: 'Οπτική ταυτότητα, δημιουργικά, social media υλικό και ενιαία επαγγελματική εικόνα για web, social και συνολική ψηφιακή παρουσία.',
+      cta: 'Δες branding & design',
+      accentClass: 'text-[#67E8F9]',
+      gradientClass: 'from-[#67E8F9]/25 to-[#67E8F9]/5',
+    },
+  ]
+
   const fadeUp = {
     initial: { opacity: 0, y: 16 },
     whileInView: { opacity: 1, y: 0 },
@@ -72,6 +224,186 @@ export default function HomePage() {
     hidden: { opacity: 0, y: 18 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: 'easeOut' } },
   }
+
+  const ecosystemPreviewCards = [
+    {
+      title: 'DiscoverDiakopto.gr',
+      category: 'FLAGSHIP PROJECT',
+      text: 'Ψηφιακός οδηγός περιοχής με έμφαση σε εμπειρίες, τοπική ταυτότητα, ιστορία και αυθεντική εικόνα.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      imageSrc: '/images/ecosystem/discoverdiakopto-preview.jpg',
+      iframeSrc: 'https://discoverdiakopto.gr',
+    },
+    {
+      title: 'Odontotos.gr',
+      category: 'FLAGSHIP PROJECT',
+      text: 'Θεματική προβολή διαδρομής, εμπειρίας και πολιτιστικού ενδιαφέροντος με σύγχρονη ψηφιακή παρουσίαση.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      imageSrc: '/images/ecosystem/odontotos-preview.jpg',
+      iframeSrc: 'https://odontotos.gr',
+    },
+    {
+      title: 'Vouraikos.gr',
+      category: 'FLAGSHIP PROJECT',
+      text: 'Μια θεματική ψηφιακή παρουσία για το φαράγγι, τα μονοπάτια, τα φυσικά τοπία, την εμπειρία του επισκέπτη και την τουριστική ταυτότητα της περιοχής.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      imageSrc: '/images/ecosystem/vouraikos-preview.jpg',
+      iframeSrc: 'https://vouraikos.gr',
+    },
+  ]
+
+  const activePreviewCard = ecosystemPreviewCards[previewModal.index] || ecosystemPreviewCards[0]
+
+  const setPreviewMode = (mode) => {
+    setPreviewModal((prev) => ({ ...prev, mode }))
+  }
+
+  const stepPreview = (direction) => {
+    setPreviewModal((prev) => ({
+      ...prev,
+      index: (prev.index + direction + ecosystemPreviewCards.length) % ecosystemPreviewCards.length,
+      mode: 'live',
+    }))
+  }
+
+  const portfolioPlaceholderCards = [
+    {
+      title: 'Discover Diakopto',
+      category: 'Signature Local Guide',
+      text: 'Curated ψηφιακή παρουσίαση περιοχής με έμφαση στην αυθεντική εμπειρία, την τοπική ταυτότητα και μια σύγχρονη αισθητική προσέγγιση προβολής.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Signature Preview',
+      imageSrc: '/images/ecosystem/discoverdiakopto-preview.jpg',
+      iframeSrc: 'https://discoverdiakopto.gr',
+      projectUrl: 'https://discoverdiakopto.gr',
+      isFeatured: true,
+    },
+    {
+      title: 'Odontotos Project',
+      category: 'Destination Editorial Concept',
+      text: 'Premium concept για διαδρομή, εμπειρία και πολιτιστικό ενδιαφέρον, σχεδιασμένο με cinematic κατεύθυνση και υψηλή οπτική συνοχή.',
+      cta: 'Δες το έργο',
+      previewType: 'iframe',
+      previewLabel: 'Live Preview Area',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: true,
+    },
+    {
+      title: 'Vouraikos Project',
+      category: 'Nature & Experience Presentation',
+      text: 'Placeholder παρουσίαση για φυσικό τοπίο, διαδρομές και θεματικά σημεία ενδιαφέροντος με ατμοσφαιρική ψηφιακή απόδοση και πιο immersive χαρακτήρα.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Visual Showcase',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Achaia Ecosystem',
+      category: 'Regional Signature Direction',
+      text: 'Curated κατεύθυνση για brands, πολιτιστικά concepts, local projects και thematic συνεργασίες με ενιαία αισθητική γλώσσα και στρατηγική συνοχή.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Project Placeholder',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: true,
+    },
+    {
+      title: 'Business Web Solutions',
+      category: 'Premium Web Presence',
+      text: 'Showcase placeholder για εταιρικές ιστοσελίδες, eShop λύσεις και business παρουσίες που απαιτούν σοβαρότητα, καθαρότητα και commercial αισθητική.',
+      cta: 'Δες το έργο',
+      previewType: 'iframe',
+      previewLabel: 'Live Preview Area',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Branding & Promotion Concepts',
+      category: 'Brand Expression System',
+      text: 'Επιλεγμένο placeholder για branding, campaigns και visual promotion concepts με ισχυρή αισθητική ταυτότητα και πιο refined εμπορική παρουσίαση.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Signature Preview',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Premium Business Presence',
+      category: 'Strategic Identity Presence',
+      text: 'Digital concept για brands που χρειάζονται ισχυρότερη online εικόνα, καλύτερη παρουσίαση υπηρεσιών και μια πιο ώριμη ψηφιακή ταυτότητα.',
+      cta: 'Δες το έργο',
+      previewType: 'iframe',
+      previewLabel: 'Live Preview Area',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: true,
+    },
+    {
+      title: 'Tourism Showcase Pages',
+      category: 'Destination Presentation Layouts',
+      text: 'Placeholder ενότητα για τουριστικά showcases και destination pages με elevated design language, ξεκάθαρη ροή περιεχομένου και premium εμπειρία χρήστη.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Visual Showcase',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Cultural Route Concepts',
+      category: 'Heritage Storytelling Concepts',
+      text: 'Θεματικό placeholder για πολιτιστικές διαδρομές, αφιερώματα και projects που συνδέουν περιεχόμενο, τόπο και σύγχρονη ψηφιακή αφήγηση.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Project Placeholder',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Service Presentation Systems',
+      category: 'High-Clarity Business Communication',
+      text: 'Premium placeholder για παρουσίαση υπηρεσιών, offers και business πληροφοριών με καθαρή δομή, στρατηγικό UX και πιο πειστική επαγγελματική εικόνα.',
+      cta: 'Δες το έργο',
+      previewType: 'iframe',
+      previewLabel: 'Live Preview Area',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Local Brand Identity Projects',
+      category: 'Identity & Visual Presence',
+      text: 'Placeholder concept για brands που χρειάζονται πιο δυνατή αναγνωρισιμότητα, αισθητική συνέπεια και πιο ολοκληρωμένη ψηφιακή παρουσία.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Signature Preview',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Digital Experience Concepts',
+      category: 'Visual & Interactive Signature Concepts',
+      text: 'Curated placeholder για projects που συνδυάζουν design, περιεχόμενο, εμπειρία χρήστη και οπτική καθαρότητα σε πιο σύγχρονα digital περιβάλλοντα.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Visual Showcase',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: true,
+    },
+  ]
 
   return (
     <>
@@ -90,17 +422,15 @@ export default function HomePage() {
           <div className="grid items-center gap-10 md:grid-cols-2">
             <motion.div {...fadeUp}>
               <span className="badge-gold">
-                Web Host Pro
+                Web Host Pro Aigialeia
               </span>
 
-              <h1 className="title-display mt-6 max-w-[14ch] font-semibold text-white">
-                Websites, digital strategy και υποδομή που χτίζει σοβαρή online παρουσία.
+              <h1 className="title-display mt-6 max-w-[24ch] text-[0.88rem] font-normal tracking-wide leading-[1.6] text-white/90 md:text-[1rem]" style={{ fontFamily: "'DM Sans', 'Inter', 'Helvetica Neue', sans-serif", letterSpacing: '0.03em' }}>
+                Websites, digital strategy και σύγχρονες λύσεις για σοβαρή online παρουσία.
               </h1>
 
-              <p className="mt-7 max-w-xl text-lg leading-8 text-white/70">
-                Σχεδιάζουμε και υλοποιούμε websites, eShop, hosting,
-                branding και content direction για brands που θέλουν
-                καθαρή στρατηγική και σύγχρονη εικόνα στην αγορά.
+              <p className="mt-7 max-w-xl text-xl leading-9 text-white/70">
+                Κατασκευή ιστοσελίδων, eShop, hosting, τεχνική υποστήριξη, branding και στρατηγική ψηφιακής παρουσίας για επαγγελματίες, επιχειρήσεις και δημιουργικά projects.
               </p>
 
               <div className="mt-9 flex flex-wrap gap-4">
@@ -125,146 +455,210 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            <motion.div
+            <div className="flex flex-col items-end gap-6 self-start mt-[2rem]">
+              {/* Animated Logo — Orbit Particles */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85, y: 30 }}
+                animate={{
+                  opacity: 1, scale: 1, y: 0,
+                  boxShadow: [
+                    '0 0 40px rgba(212,168,79,0.05)',
+                    '0 0 60px rgba(110,198,255,0.12)',
+                    '0 0 40px rgba(212,168,79,0.05)',
+                  ]
+                }}
+                transition={{
+                  opacity: { duration: 0.8, ease: 'easeOut', delay: 0.2 },
+                  scale: { duration: 0.8, ease: 'easeOut', delay: 0.2 },
+                  y: { duration: 0.8, ease: 'easeOut', delay: 0.2 },
+                  boxShadow: { duration: 5, repeat: Infinity, ease: 'easeInOut' },
+                }}
+                className="relative w-full flex items-center justify-center rounded-full" style={{ minHeight: '320px' }}
+              >
+                {/* Orbit ring 1 — gold */}
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    border: '1.5px solid rgba(212,168,79,0.2)',
+                    boxShadow: '0 0 20px rgba(212,168,79,0.1)',
+                    margin: '-8%',
+                  }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+                >
+                  <div style={{
+                    position: 'absolute', top: 0, left: '50%', transform: 'translate(-50%, -50%)',
+                    width: 10, height: 10, borderRadius: '50%',
+                    background: '#D4A84F', boxShadow: '0 0 14px rgba(212,168,79,0.8)',
+                  }} />
+                </motion.div>
+
+                {/* Orbit ring 2 — cyan, reverse */}
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    border: '1px solid rgba(110,198,255,0.15)',
+                    boxShadow: '0 0 15px rgba(110,198,255,0.08)',
+                    margin: '-14%',
+                  }}
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+                >
+                  <div style={{
+                    position: 'absolute', top: '50%', right: 0, transform: 'translate(50%, -50%)',
+                    width: 7, height: 7, borderRadius: '50%',
+                    background: '#6EC6FF', boxShadow: '0 0 12px rgba(110,198,255,0.8)',
+                  }} />
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 50%)',
+                    width: 5, height: 5, borderRadius: '50%',
+                    background: '#a5f3fc', boxShadow: '0 0 10px rgba(165,243,252,0.7)',
+                  }} />
+                </motion.div>
+
+                {/* Logo */}
+                <motion.img
+                  src="/images/logo.png"
+                  alt="Web Host Pro"
+                  className="w-full relative z-10"
+                  style={{ filter: 'drop-shadow(0 0 30px rgba(212,168,79,0.25))' }}
+                  animate={{
+                    y: [0, -8, 0],
+                    scale: [1, 1.03, 1],
+                    filter: [
+                      'drop-shadow(0 0 25px rgba(212,168,79,0.2))',
+                      'drop-shadow(0 0 50px rgba(212,168,79,0.5))',
+                      'drop-shadow(0 0 25px rgba(212,168,79,0.2))',
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                />
+              </motion.div>
+
+              {/* Right panel */}
+              <motion.div
               {...fadeUp}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.04 }}
-              className="glass-strong page-glow relative overflow-hidden rounded-[32px] p-6"
+              className="glass-strong page-glow relative overflow-hidden rounded-[32px] p-6 backdrop-blur-xl border border-white/10 bg-white/5"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(29,143,255,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(0,194,168,0.15),transparent_28%)]" />
+              <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(29,143,255,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(0,194,168,0.15),transparent_28%)] opacity-80"
+              />
               <div className="soft-grid absolute inset-0 opacity-40" />
               <div className="relative grid gap-4">
                 <div className="rounded-3xl border border-white/10 bg-white/6 p-6">
-                  <p className="text-sm uppercase tracking-[0.18em] text-white/45">
-                    Strategic Focus
+                  <p className="text-sm uppercase tracking-[0.18em]" style={{ color: '#a5f3fc' }}>
+                    Digital Solutions
                   </p>
                   <h3 className="mt-2 text-2xl font-semibold">
-                    Websites, Hosting, Branding, Growth
+                    Web Development, Hosting, Brand Strategy
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-white/65">
-                    Premium digital execution με έμφαση σε θέση brand,
-                    λειτουργικότητα και επαγγελματική αξιοπιστία.
+                    Σχεδιάζουμε και χτίζουμε επαγγελματική ψηφιακή παρουσία με λειτουργικότητα, συνέπεια και καθαρό design.
                   </p>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                    <p className="text-sm text-white/45">Creative-Tech Direction</p>
-                    <p className="mt-2 text-lg font-medium">Σύγχρονη premium παρουσίαση</p>
+                    <p className="text-sm" style={{ color: '#a5f3fc' }}>Premium Experience</p>
+                    <p className="mt-2 text-lg font-medium">Καθαρό interface, δυνατή ταυτότητα</p>
                   </div>
                   <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                    <p className="text-sm text-white/45">Regional Initiative</p>
-                    <p className="mt-2 text-lg font-medium">Digital Achaia powered by Web Host Pro</p>
+                    <p className="text-sm" style={{ color: '#a5f3fc' }}>Digital Achaia</p>
+                    <p className="mt-2 text-lg font-medium">Local vision, digital execution</p>
                   </div>
                 </div>
               </div>
             </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="section-space section-divider pt-0">
-        <div className="container-main">
-          <div className="mb-10 flex items-end justify-between gap-6">
-            <div>
-              <p className="text-sm uppercase tracking-[0.18em] text-cyan-200/80">
+        <div className="container-main relative overflow-hidden rounded-[30px] border border-amber-300/12 bg-gradient-to-b from-white/[0.035] to-white/[0.015] p-6 backdrop-blur-xl md:p-8">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-3xl">
+              <p className="text-sm uppercase tracking-[0.18em] text-amber-300/85">
                 Υπηρεσίες
               </p>
-              <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
-                Ο υπηρεσιακός πυρήνας της Web Host Pro
+              <h2 className="mt-3 text-3xl font-semibold text-[#67E8F9] md:text-4xl">
+                Ο βασικός πυρήνας της Web Host Pro
               </h2>
+              <p className="mt-4 max-w-3xl leading-8 text-white/65">
+                Σύγχρονες ψηφιακές λύσεις για επιχειρήσεις, επαγγελματίες και brands που θέλουν πιο καθαρή εικόνα, καλύτερη λειτουργία και σοβαρή online παρουσία.
+              </p>
             </div>
-            <Link to="/services" className="btn-inline hidden md:inline-flex">
-              Δείτε όλες <ArrowRight size={14} />
-            </Link>
           </div>
 
           <motion.div
-            className="grid gap-5 md:grid-cols-2 xl:grid-cols-3"
-            variants={gridVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {services.map((service) => {
-              const Icon = icons[service.key]
-              return (
-                <motion.div
-                  key={service.key}
-                  className="glass service-card group rounded-[28px] p-6"
-                  variants={cardVariants}
-                >
-                  <div className="icon-shell inline-flex p-3">
-                    <Icon size={20} />
-                  </div>
-                  <h3 className="mt-5 text-xl font-semibold">{service.title}</h3>
-                  <p className="mt-3 leading-7 text-white/65">{service.text}</p>
-                  <span className="inline-cta mt-5">
-                    Μάθετε περισσότερα <ArrowRight size={14} />
-                  </span>
-                </motion.div>
-              )
-            })}
+              className="relative mt-12 overflow-hidden rounded-[30px] border border-amber-300/12 bg-gradient-to-b from-white/[0.035] to-white/[0.015] p-6 md:p-8"
+              animate={{
+                boxShadow: [
+                  '0 14px 34px rgba(0,0,0,0.22)',
+                  '0 18px 40px rgba(212,168,79,0.14)',
+                  '0 14px 34px rgba(0,0,0,0.22)',
+                ],
+              }}
+              transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <motion.div
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(212,168,79,0.13),transparent_38%),radial-gradient(circle_at_100%_100%,rgba(103,232,249,0.12),transparent_36%)]"
+                animate={{ opacity: [0.55, 0.95, 0.55] }}
+                transition={{ duration: 4.6, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.div
+                className="relative z-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
+                variants={gridVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                {homeServicesLucide.map((service) => {
+                  const Icon = service.Icon
+                  return (
+                    <motion.article
+                      key={`alt2-${service.key}`}
+                      className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#0d1828]/68 p-6 shadow-[0_14px_32px_rgba(0,0,0,0.28)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-amber-300/25"
+                      variants={cardVariants}
+                    >
+                      <div className="pointer-events-none absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-amber-200/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+                      <div className="pointer-events-none absolute -left-8 -top-7 h-20 w-20 rounded-full bg-cyan-300/12 blur-2xl opacity-0 transition duration-300 group-hover:opacity-100" />
+
+                      <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/12 bg-[#111d31]">
+                        <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${service.gradientClass} opacity-95`} />
+                        <Icon size={22} strokeWidth={1.9} className={`relative z-10 ${service.accentClass}`} />
+                      </div>
+
+                      <p className="mt-5 text-[11px] uppercase tracking-[0.16em] text-white">
+                        {service.smallLabel}
+                      </p>
+                      <h4 className="mt-2 text-xl font-semibold leading-8 text-[#67E8F9]">
+                        {service.title}
+                      </h4>
+                      <p className="mt-3 leading-7 text-white/65">
+                        {service.text}
+                      </p>
+
+                      <span className="inline-cta mt-auto ml-auto pt-6 text-right text-amber-100 group-hover:text-[#67E8F9]">
+                        {service.cta} <ArrowRight size={14} />
+                      </span>
+                    </motion.article>
+                  )
+                })}
+              </motion.div>
+
+              <div className="relative z-10 mt-8 flex flex-wrap justify-end gap-3">
+                <Link to="/services" className="btn-inline inline-flex !border-[#67E8F9]/60 !bg-[#67E8F9]/16 !text-[#67E8F9] hover:!bg-[#67E8F9]/30 hover:!text-white">
+                  Δείτε όλες τις υπηρεσίες <ArrowRight size={14} />
+                </Link>
+                <Link to="/contact" className="btn-inline inline-flex !border-amber-300/60 !bg-amber-300/18 !text-amber-100 hover:!bg-amber-300/34 hover:!text-white">
+                  Συζητήστε το project σας <ArrowRight size={14} />
+                </Link>
+                <Link to="/projects" className="btn-inline inline-flex !border-white/28 !bg-white/8 !text-white/88 hover:!border-[#67E8F9]/55 hover:!bg-[#67E8F9]/12 hover:!text-[#67E8F9]">
+                  Δες τα έργα <ArrowRight size={14} />
+                </Link>
+              </div>
           </motion.div>
-        </div>
-      </section>
-
-      <section className="section-space section-divider">
-        <div className="container-main">
-          <div className="glass-strong page-glow relative overflow-hidden rounded-[32px] p-8 md:p-12">
-            <div className="absolute -right-10 top-0 h-44 w-44 rounded-full bg-cyan-300/22 blur-3xl" />
-            <div className="absolute -left-8 bottom-2 h-40 w-40 rounded-full bg-emerald-300/18 blur-3xl" />
-            <div className="grid items-center gap-8 md:grid-cols-2">
-              <div>
-                <p className="text-sm uppercase tracking-[0.22em] text-amber-300/85">
-                  Digital Achaia
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
-                  Η περιφερειακή creative πρωτοβουλία της Web Host Pro για τόπους, πολιτισμό και local projects
-                </h2>
-                <p className="mt-4 max-w-2xl leading-8 text-white/70">
-                  Η Digital Achaia αναπτύσσει δομημένη ψηφιακή αφήγηση για
-                  περιοχές, εμπειρίες, πολιτισμό και τοπικά brands με
-                  στρατηγική λογική και premium αισθητική.
-                </p>
-
-                <div className="mt-6 flex flex-wrap gap-4">
-                  <Link
-                    to="/digital-achaia"
-                    className="premium-btn btn btn-primary"
-                  >
-                    Δείτε την Digital Achaia
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="premium-btn btn btn-secondary"
-                  >
-                    Συζητήστε το project σας
-                  </Link>
-                </div>
-              </div>
-
-              <div className="grid gap-4">
-                {[
-                  'Place branding & ταυτότητα περιοχών',
-                  'Τουριστική προβολή και ψηφιακή αφήγηση',
-                  'Θεματικοί οδηγοί και πολιτιστικές διαδρομές',
-                  'Συνεργασίες με τοπικά brands και πρωτοβουλίες',
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-3xl border border-amber-400/12 bg-amber-400/[0.04] px-5 py-4 text-white/80"
-                  >
-                    {item}
-                  </div>
-                ))}
-
-                <div className="rounded-3xl border border-cyan-200/20 bg-cyan-200/7 px-5 py-4">
-                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-100/70">Strategic Arm</p>
-                  <p className="mt-2 text-sm text-white/75">Regional identity, tourism storytelling και thematic digital initiatives.</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -274,94 +668,354 @@ export default function HomePage() {
             <p className="text-sm uppercase tracking-[0.18em] text-amber-200/80">
               Portfolio Highlights
             </p>
-            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
-              Selected concepts και πρωτοβουλίες με στρατηγικό χαρακτήρα
+            <h2 className="mt-3 max-w-5xl text-3xl font-semibold leading-tight text-[#67E8F9] md:text-4xl">
+              Signature έργα, curated concepts και premium ψηφιακές κατευθύνσεις
             </h2>
-            <p className="mt-4 max-w-3xl text-white/65">
-              Μια curated επιλογή από initiative cases, destination concepts και thematic directions
-              που δείχνουν τη μεθοδολογία και το ύφος της Web Host Pro.
+            <p className="mt-4 max-w-5xl leading-8 text-white/65">
+              Μια επιλεγμένη σύνθεση από digital έργα, visual concepts και στρατηγικές κατευθύνσεις που αποτυπώνουν τη φιλοσοφία, την αισθητική και το δημιουργικό αποτύπωμα της Web Host Pro. Η ενότητα αυτή λειτουργεί ως curated showcase υψηλής αισθητικής, παρουσιάζοντας business παρουσίες, destination concepts, thematic projects και premium digital directions με σύγχρονη δομή, οπτική συνέπεια και ουσιαστική ταυτότητα.
             </p>
           </div>
 
           <motion.div
-            className="grid gap-5 md:grid-cols-3"
+            className="grid gap-5 md:grid-cols-2 xl:grid-cols-3"
             variants={gridVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
           >
-            {projects.map((project) => {
-              const entry = projectPresentation[project.title] || {
-                badge: 'Selected',
-                visual: 'Project Visual Placeholder',
-                title: project.title,
-                category: project.category,
-                text: project.text,
-              }
+            {portfolioPlaceholderCards.map((card, index) => (
+              <motion.div
+                key={card.title}
+                className={`glass service-card group relative flex h-full min-h-[430px] flex-col overflow-hidden rounded-[26px] border p-6 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_42px_rgba(6,14,26,0.44)] ${card.isFeatured ? 'border-amber-300/24 bg-white/[0.05] hover:border-amber-200/46' : 'border-white/10 bg-white/[0.04] hover:border-cyan-200/28'}`}
+                variants={cardVariants}
+              >
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-cyan-200/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full bg-amber-300/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
 
-              return (
-                <MotionLink
-                  to={project.url}
-                  key={project.title}
-                  className="glass service-card group relative overflow-hidden rounded-[28px] p-6"
-                  variants={cardVariants}
-                >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-cyan-200/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
-                <div className="portfolio-thumb">
-                  <span className="portfolio-thumb-label">{entry.visual}</span>
-                </div>
-                <span className="badge-gold px-3 py-1 text-[11px]">
-                  {entry.badge}
-                </span>
-                <p className="text-xs uppercase tracking-[0.18em] text-white/45">
-                  {entry.category}
+                {card.previewType === 'iframe' ? (
+                  <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl border border-cyan-200/18 bg-gradient-to-br from-cyan-300/12 via-white/5 to-amber-300/8">
+                    <div className="absolute inset-3 rounded-xl border border-cyan-200/20 bg-[#0b1525]/75" />
+                    <div className="absolute left-4 top-4 rounded-full border border-cyan-200/25 bg-cyan-200/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-cyan-100/85 shadow-[0_0_20px_rgba(103,232,249,0.12)]">
+                      {card.previewLabel || 'Live Preview Area'}
+                    </div>
+                    <div className="absolute bottom-4 left-4 text-[11px] uppercase tracking-[0.18em] text-white/55">
+                      Ready for iframe embed
+                    </div>
+                  </div>
+                ) : (
+                  <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br from-amber-300/12 via-white/5 to-cyan-300/10">
+                    {card.imageSrc ? (
+                      <img
+                        src={card.imageSrc}
+                        alt={`${card.title} preview`}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : null}
+                    <div className="absolute inset-0 opacity-40 [background:linear-gradient(140deg,rgba(255,255,255,0.08),transparent_60%)]" />
+                    <div className="absolute inset-2 rounded-xl border border-white/10 bg-white/[0.02] shadow-[inset_0_0_26px_rgba(103,232,249,0.08)]" />
+                    <div className="absolute left-4 top-4 rounded-full border border-amber-200/28 bg-amber-200/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-amber-100/88 shadow-[0_0_20px_rgba(212,168,79,0.14)]">
+                      {card.previewLabel || 'Screenshot Placeholder'}
+                    </div>
+                    <div className="absolute bottom-4 left-4 text-[11px] uppercase tracking-[0.18em] text-white/55">
+                      {index % 2 === 0 ? 'Project visual area' : 'Screenshot / mockup slot'}
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-200/90">
+                  {card.category}
                 </p>
-                <h3 className="mt-3 text-2xl font-semibold">{entry.title}</h3>
-                <p className="mt-4 leading-7 text-white/65">{entry.text}</p>
-                <span className="inline-cta mt-5">
-                  Δες το έργο <ArrowRight size={15} />
-                </span>
-                </MotionLink>
-              )
-            })}
+                <h3 className="mt-3 text-[1.45rem] font-semibold leading-8 text-white/95">
+                  {card.title}
+                </h3>
+                <p className="mt-4 leading-7 text-white/65">
+                  {card.text}
+                </p>
+                {card.projectUrl ? (
+                  <a
+                    href={card.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-cta mt-auto ml-auto pt-6 text-right text-[#67E8F9] transition group-hover:text-amber-100"
+                  >
+                    {card.cta} <ArrowRight size={15} />
+                  </a>
+                ) : (
+                  <span className="inline-cta mt-auto ml-auto pt-6 text-right text-[#67E8F9] group-hover:text-amber-100">
+                    {card.cta} <ArrowRight size={15} />
+                  </span>
+                )}
+              </motion.div>
+            ))}
           </motion.div>
+
+          <div className="glass mt-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/12 bg-white/[0.03] p-4 md:p-5">
+            <p className="text-sm text-white/60">
+              Curated portfolio preview by Web Host Pro
+            </p>
+            <div className="flex flex-wrap gap-3">
+            <Link to="/projects" className="btn-inline inline-flex !border-[#67E8F9]/55 !bg-[#67E8F9]/14 !text-[#67E8F9] hover:!bg-[#67E8F9]/28 hover:!text-white">
+              Δείτε όλα τα έργα <ArrowRight size={14} />
+            </Link>
+            <Link to="/contact" className="btn-inline inline-flex !border-amber-300/55 !bg-amber-300/16 !text-amber-100 hover:!bg-amber-300/30 hover:!text-white">
+              Συζητήστε το project σας <ArrowRight size={14} />
+            </Link>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="section-space section-divider pt-0">
         <div className="container-main">
-          <div className="glass-strong rounded-[32px] p-8 text-center md:p-12">
-            <h2 className="text-3xl font-semibold md:text-4xl">
-              Έτοιμοι για πιο ώριμη και στρατηγική ψηφιακή παρουσία;
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl leading-8 text-white/70">
-              Αναλαμβάνουμε websites, eShop, hosting υποδομή, branding και
-              content direction με στόχο ισχυρότερη τοποθέτηση και καθαρή εικόνα.
-            </p>
-            <div className="cta-row mt-8 justify-center">
-              <Link
-                to="/contact"
-                className="premium-btn btn btn-primary"
-              >
-                Ξεκινήστε συνεργασία
-              </Link>
-              <Link
-                to="/projects"
-                className="premium-btn btn btn-ghost"
-              >
-                Δείτε έργα
-              </Link>
+          <div className="relative overflow-hidden rounded-[30px] border border-amber-300/12 bg-gradient-to-b from-white/[0.035] to-white/[0.015] p-7 backdrop-blur-xl md:p-10">
+            <div className="grid gap-8 md:grid-cols-[1.35fr_0.65fr] md:items-start">
+              <div>
+                <p className="text-sm uppercase tracking-[0.18em] text-amber-300/85">
+                  Digital Achaia
+                </p>
+                <h2 className="mt-3 max-w-4xl text-2xl font-semibold text-[#67E8F9] md:text-3xl">
+                  Η δημιουργική κατεύθυνση της Web Host Pro για τόπους, πολιτισμό και τοπικά projects
+                </h2>
+                <p className="mt-4 leading-8 text-white/68">
+                  Η Digital Achaia εστιάζει στην ανάδειξη περιοχών, εμπειριών, πολιτιστικών στοιχείων, local brands και θεματικών διαδρομών μέσα από σύγχρονη ψηφιακή ταυτότητα και σοβαρή παρουσίαση.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  'Place branding & ταυτότητα περιοχών',
+                  'Τουριστική προβολή και ψηφιακή αφήγηση',
+                  'Θεματικοί οδηγοί και πολιτιστικές διαδρομές',
+                  'Συνεργασίες με τοπικά brands και πρωτοβουλίες',
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white/80">
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-2">
-              <a href="mailto:info@webhostpro.gr" className="contact-chip"><Mail size={12} /> Email</a>
-              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>Instagram</a>
-              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>Facebook</a>
-              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>LinkedIn</a>
+            <motion.div
+              className="mt-6 grid gap-5 md:grid-cols-3"
+              variants={gridVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              {ecosystemPreviewCards.map((card, idx) => (
+                <motion.div
+                  key={card.title}
+                  className="glass service-card group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-200/25"
+                  variants={cardVariants}
+                >
+                  <p className="inline-flex w-fit rounded-full border border-amber-300/40 bg-amber-300/8 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-100/88">
+                    {card.category}
+                  </p>
+                  <h3 className="mt-3 text-[2rem] font-semibold leading-tight text-white">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 min-h-[6.4rem] leading-7 text-white/68 md:min-h-[8rem]">
+                    {card.text}
+                  </p>
+
+                  {card.previewType === 'iframe' ? (
+                    <div className="relative mb-4 mt-4 aspect-[16/10] overflow-hidden rounded-2xl border border-cyan-200/18 bg-[#0b1525]">
+                      <iframe
+                        src={card.iframeSrc}
+                        title={`${card.title} preview`}
+                        className="h-full w-full"
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      />
+                    </div>
+                  ) : (
+                    <div className="relative mb-4 mt-4 aspect-[16/10] overflow-hidden rounded-2xl border border-white/12 bg-[#0b1525]">
+                      <img
+                        src={card.imageSrc}
+                        alt={`${card.title} screenshot`}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+
+                  <div className="mt-auto flex items-center gap-2 pt-2">
+                    <a
+                      href={card.iframeSrc}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-amber-300/55 bg-amber-300/16 px-4 py-2 text-sm font-semibold text-amber-100 transition hover:bg-amber-300/28 hover:text-white"
+                    >
+                      Δείτε το site
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => openPreviewModal(idx)}
+                      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[#67E8F9]/60 bg-[#67E8F9]/16 px-4 py-2 text-sm font-semibold text-[#67E8F9] transition hover:bg-[#67E8F9]/28 hover:text-white"
+                    >
+                      Προεπισκόπηση
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <div className="mt-7 flex flex-wrap justify-end gap-3">
+              <Link to="/digital-achaia" className="btn-inline inline-flex !border-[#67E8F9]/60 !bg-[#67E8F9]/16 !text-[#67E8F9] hover:!bg-[#67E8F9]/30 hover:!text-white">
+                Δείτε την Digital Achaia <ArrowRight size={14} />
+              </Link>
+              <Link to="/contact" className="btn-inline inline-flex !border-amber-300/60 !bg-amber-300/18 !text-amber-100 hover:!bg-amber-300/34 hover:!text-white">
+                Συζητήστε ένα project <ArrowRight size={14} />
+              </Link>
             </div>
           </div>
         </div>
       </section>
+
+      <section className="section-space section-divider pt-0">
+        <div className="container-main">
+          <div className="relative overflow-hidden rounded-[32px] border border-amber-300/12 bg-gradient-to-b from-white/[0.035] to-white/[0.015] p-8 backdrop-blur-xl md:p-12">
+            <div className="pointer-events-none absolute -left-10 top-0 h-44 w-44 rounded-full bg-amber-300/14 blur-3xl" />
+            <div className="pointer-events-none absolute -right-10 bottom-0 h-48 w-48 rounded-full bg-cyan-300/14 blur-3xl" />
+
+            <div className="relative mx-auto max-w-3xl rounded-[28px] border border-white/10 bg-white/[0.04] p-6 text-center md:p-8">
+              <p className="text-sm uppercase tracking-[0.18em] text-amber-300/85">
+                Newsletter
+              </p>
+              <h3 className="mt-3 text-3xl font-semibold text-[#67E8F9] md:text-4xl">
+                Μείνετε ενημερωμένοι
+              </h3>
+              <p className="mx-auto mt-4 max-w-2xl leading-8 text-white/70">
+                Νέα, ιδέες, digital tips και ενημερώσεις για websites, eShop, hosting, branding και σύγχρονη online παρουσία από τη Web Host Pro.
+              </p>
+
+              <form className="mx-auto mt-6 flex max-w-2xl flex-col gap-3 sm:flex-row" onSubmit={handleNewsletterSubmit}>
+                <input
+                  type="email"
+                  name="subscriberEmail"
+                  required
+                  placeholder="Το email σας"
+                  className="focus-ring w-full rounded-2xl border border-white/12 bg-white/[0.05] px-4 py-3 text-white placeholder:text-white/40"
+                />
+                <button type="submit" className="premium-btn btn btn-primary sm:w-auto">
+                  Εγγραφή
+                </button>
+              </form>
+
+              <p className="mx-auto mt-3 max-w-2xl text-sm text-white/55">
+                Κάντε εγγραφή για updates, ιδέες και νέα γύρω από web, branding και digital παρουσία.
+              </p>
+            </div>
+
+            <div className="relative mx-auto mt-10 max-w-3xl text-center">
+              <h2 className="text-3xl font-semibold text-[#67E8F9] md:text-4xl">
+                Θέλεις μια πιο σοβαρή και σύγχρονη ψηφιακή παρουσία;
+              </h2>
+              <p className="mx-auto mt-4 max-w-3xl leading-8 text-white/70">
+                Η Web Host Pro δημιουργεί websites, eShop, hosting υποδομή, branding και στρατηγική ψηφιακής παρουσίας για επιχειρήσεις, επαγγελματίες και projects που θέλουν πιο καθαρή εικόνα και σωστή online βάση ανάπτυξης.
+              </p>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <Link to="/contact" className="premium-btn btn btn-primary">
+                  Συζητήστε το project σας
+                </Link>
+                <Link to="/services" className="premium-btn btn btn-secondary">
+                  Δείτε υπηρεσίες
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {previewModal.open && activePreviewCard && (
+        <div
+          className="fixed inset-0 z-[2200] flex items-center justify-center bg-[#040914]/82 p-4 backdrop-blur-md"
+          onClick={closePreviewModal}
+          role="presentation"
+        >
+          <div
+            className="flex h-[65vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-cyan-200/24 bg-[#071221] shadow-[0_30px_100px_rgba(0,0,0,0.6)] md:h-[70vh]"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Προεπισκόπηση ${activePreviewCard.title}`}
+          >
+            <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 md:px-6">
+              <p className="text-sm font-semibold text-white/92">
+                {activePreviewCard.title}
+              </p>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setPreviewMode('live')}
+                  className={`inline-flex items-center justify-center rounded-full border px-3 py-1 text-[11px] font-semibold transition ${previewModal.mode === 'live' ? 'border-cyan-300/45 bg-cyan-300/16 text-cyan-100' : 'border-white/20 bg-white/[0.04] text-white/80 hover:bg-white/[0.12]'}`}
+                >
+                  Live
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPreviewMode('screenshot')}
+                  className={`inline-flex items-center justify-center rounded-full border px-3 py-1 text-[11px] font-semibold transition ${previewModal.mode === 'screenshot' ? 'border-cyan-300/45 bg-cyan-300/16 text-cyan-100' : 'border-white/20 bg-white/[0.04] text-white/80 hover:bg-white/[0.12]'}`}
+                >
+                  Screenshot
+                </button>
+                <button
+                  type="button"
+                  onClick={closePreviewModal}
+                  className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-white/[0.04] text-[11px] font-semibold text-white/90 transition hover:bg-white/[0.12]"
+                  aria-label="Κλείσιμο προεπισκόπησης"
+                >
+                  X
+                </button>
+              </div>
+            </div>
+            <div className="h-full min-h-[60vh] w-full bg-[#091427]">
+              {previewModal.mode === 'live' ? (
+                <iframe
+                  src={activePreviewCard.iframeSrc}
+                  title={`Iframe preview ${activePreviewCard.title}`}
+                  className="h-full w-full"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              ) : (
+                <img
+                  src={activePreviewCard.imageSrc}
+                  alt={`${activePreviewCard.title} screenshot`}
+                  className="h-full w-full object-contain"
+                  loading="lazy"
+                />
+              )}
+            </div>
+            <div className="flex items-center gap-2 border-t border-white/10 px-4 py-2 md:px-6">
+              <button
+                type="button"
+                onClick={() => stepPreview(-1)}
+                className="inline-flex items-center justify-center rounded-full border border-white/22 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-white/88 transition hover:bg-white/[0.11]"
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                onClick={() => stepPreview(1)}
+                className="inline-flex items-center justify-center rounded-full border border-white/22 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-white/88 transition hover:bg-white/[0.11]"
+              >
+                Next
+              </button>
+              <a
+                href={activePreviewCard.iframeSrc}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-amber-300/45 bg-amber-300/16 px-4 py-1.5 text-xs font-semibold text-amber-100 transition hover:bg-amber-300/28"
+              >
+                Δείτε το site
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

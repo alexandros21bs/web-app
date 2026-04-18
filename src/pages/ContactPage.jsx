@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Mail, MapPin, Globe, ArrowRight } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Mail, MapPin, Globe, Phone, MessageCircle, Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Seo from '../components/common/Seo'
 
 const initialState = {
@@ -15,6 +15,7 @@ const initialState = {
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function ContactPage() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState(initialState)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState({ type: '', message: '' })
@@ -74,10 +75,13 @@ export default function ContactPage() {
 
       <div className="container-main">
         <div className="max-w-3xl">
+          <button onClick={() => navigate(-1)} className="back-btn mb-4 inline-flex items-center gap-2 text-sm text-white/50 transition hover:text-white/80">
+            <ArrowLeft size={16} /> Πίσω
+          </button>
           <p className="text-sm uppercase tracking-[0.18em] text-cyan-200/80">
             Επικοινωνία
           </p>
-          <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
+          <h1 className="mt-4 text-4xl font-semibold text-[#67E8F9] md:text-6xl">
             Συζητήστε μαζί μας το επόμενο digital project σας
           </h1>
           <p className="mt-6 text-lg leading-8 text-white/70">
@@ -95,7 +99,7 @@ export default function ContactPage() {
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           <div className="glass-strong rounded-[32px] p-8">
-            <h2 className="text-2xl font-semibold">Στείλτε αίτημα συνεργασίας</h2>
+            <h2 className="text-2xl font-semibold text-[#67E8F9]">Στείλτε αίτημα συνεργασίας</h2>
             <p className="mt-3 text-sm leading-6 text-white/60">
               Συμπληρώστε τα βασικά στοιχεία και το πλαίσιο του project για πιο
               γρήγορη εκτίμηση και στοχευμένη πρώτη απάντηση.
@@ -233,7 +237,7 @@ export default function ContactPage() {
           </div>
 
           <div className="glass-strong rounded-[32px] p-8">
-            <h2 className="text-2xl font-semibold">Πλαίσιο συνεργασίας</h2>
+            <h2 className="text-2xl font-semibold text-[#67E8F9]">Πλαίσιο συνεργασίας</h2>
             <p className="mt-3 leading-7 text-white/65">
               Η Web Host Pro αναλαμβάνει projects που χρειάζονται καθαρό strategic plan,
               σοβαρή υλοποίηση και μακροπρόθεσμη υποστήριξη.
@@ -257,26 +261,51 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div className="mt-6 rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
-              <div className="flex flex-col gap-2">
-                <span className="icon-text"><Mail size={13} className="shrink-0 text-sky-300" />info@webhostpro.gr</span>
-                <span className="icon-text"><MapPin size={13} className="shrink-0 text-amber-400" />Base: Αχαϊα</span>
-                <span className="icon-text"><Globe size={13} className="shrink-0 text-sky-300" />Digital Achaia powered by Web Host Pro</span>
+            <div className="mt-6 space-y-3">
+              <div className="rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
+                <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/70">Web Host Pro Αιγιαλεία</p>
+                <div className="mt-2 flex flex-col gap-2">
+                  <span className="icon-text"><Globe size={13} className="shrink-0 text-sky-300" />webhostpro.gr</span>
+                  <a href="mailto:info@webhostpro.gr" className="icon-text"><Mail size={13} className="shrink-0 text-sky-300" />info@webhostpro.gr</a>
+                </div>
               </div>
-            </div>
 
-            <div className="mt-5 flex flex-wrap gap-2">
-              <a href="mailto:info@webhostpro.gr" className="contact-chip"><Mail size={12} /> Email</a>
-              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>Instagram</a>
-              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>Facebook</a>
-              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>LinkedIn</a>
-              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>WhatsApp</a>
+              <div className="rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
+                <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/70">Digital Achaia</p>
+                <div className="mt-2 flex flex-col gap-2">
+                  <span className="icon-text"><Globe size={13} className="shrink-0 text-sky-300" />digitalachaia.gr</span>
+                  <a href="mailto:info@digitalachaia.gr" className="icon-text"><Mail size={13} className="shrink-0 text-sky-300" />info@digitalachaia.gr</a>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
+                <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/70">Τηλέφωνα</p>
+                <div className="mt-2 flex flex-col gap-2">
+                  <a href="tel:+306955236006" className="icon-text"><Phone size={13} className="shrink-0 text-amber-400" />+30 6955236006</a>
+                  <a href="tel:+306984138488" className="icon-text"><Phone size={13} className="shrink-0 text-amber-400" />+30 6984138488</a>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
+                <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/70">WhatsApp</p>
+                <a href="https://wa.me/306955236006" target="_blank" rel="noopener noreferrer" className="icon-text mt-2"><MessageCircle size={13} className="shrink-0 text-emerald-300" />+30 6955236006</a>
+              </div>
+
+              <div className="rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
+                <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/70">Viber</p>
+                <a href="viber://chat?number=%2B306984138488" className="icon-text mt-2"><Send size={13} className="shrink-0 text-violet-300" />+30 6984138488</a>
+              </div>
+
+              <div className="rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
+                <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/70">Τοποθεσία</p>
+                <span className="icon-text mt-2"><MapPin size={13} className="shrink-0 text-amber-400" />Διακοπτό, Αιγιαλείας, Αχαΐα, 25003, Πελοπόννησος</span>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="section-end-block">
-          <h2 className="text-2xl font-semibold md:text-3xl">Θέλετε πιο άμεσο επόμενο βήμα;</h2>
+          <h2 className="text-2xl font-semibold text-[#67E8F9] md:text-3xl">Θέλετε πιο άμεσο επόμενο βήμα;</h2>
           <p className="mt-3 max-w-3xl text-white/65">
             Αν δεν είστε ακόμη έτοιμοι για πλήρες brief, δείτε πρώτα τις υπηρεσίες ή το portfolio
             και επιστρέψτε με πιο συγκεκριμένη κατεύθυνση.

@@ -1,0 +1,90 @@
+<section class="achaia-map-section" id="achaia-map-intelligence">
+  <div class="about-map-shell">
+    <div class="about-map-head">
+      <div>
+        <h3>Χάρτης Αχαΐας • Project Intelligence Layer</h3>
+        <p>Custom visual βάση για μελλοντική τοποθέτηση σημαιών, routes και δυναμικών project markers.</p>
+      </div>
+      <span class="project-tag">Map Stage v1</span>
+    </div>
+
+    <div class="about-map-grid">
+      <div class="map-stage" aria-label="Stylized map stage of Achaia">
+        <div class="map-grid" aria-hidden="true"></div>
+        <div class="map-terrain terrain-far" aria-hidden="true"></div>
+        <div class="map-terrain terrain-near" aria-hidden="true"></div>
+        <div class="map-cloud cloud-a" aria-hidden="true"></div>
+        <div class="map-cloud cloud-b" aria-hidden="true"></div>
+
+        <svg class="map-route-layer" viewBox="0 0 800 420" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          <path d="M220 240 C260 210, 320 190, 385 188 C445 187, 510 198, 562 218" fill="none" stroke="rgba(247, 229, 188, 0.45)" stroke-width="2" stroke-dasharray="6 8"></path>
+        </svg>
+
+        <svg class="achaia-shape" viewBox="0 0 800 420" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="achFillStandalone" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#4b6480" stop-opacity="0.72"></stop>
+              <stop offset="52%" stop-color="#2e4459" stop-opacity="0.9"></stop>
+              <stop offset="100%" stop-color="#1f2f40" stop-opacity="0.95"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M115 249 L148 198 L188 176 L219 151 L248 154 L287 131 L337 126 L371 134 L401 154 L440 166 L492 170 L536 196 L570 202 L612 222 L657 262 L667 286 L641 311 L596 322 L554 319 L522 331 L478 336 L431 344 L395 336 L366 321 L336 316 L306 329 L270 337 L231 329 L209 312 L179 307 L153 290 L126 274 Z" fill="url(#achFillStandalone)" stroke="rgba(243, 228, 193, 0.55)" stroke-width="2"></path>
+        </svg>
+
+        <button class="map-pin pin-diakopto active" data-project-id="diakopto" data-label="DiscoverDiakopto" data-title-el="DiscoverDiakopto.gr" data-title-en="DiscoverDiakopto.gr" data-text-el="Ψηφιακή πύλη για την ταυτότητα του Διακοπτού, με έμφαση σε εμπειρία, ιστορία και τουριστική εικόνα." data-text-en="Digital gateway for Diakopto identity with focus on local experience, heritage, and tourism visibility." data-link="https://discoverdiakopto.gr" data-weather-focus="aigio" type="button" aria-label="DiscoverDiakopto marker"></button>
+        <button class="map-pin pin-odontotos" data-project-id="odontotos" data-label="Odontotos" data-title-el="Odontotos.gr" data-title-en="Odontotos.gr" data-text-el="Εστιασμένη παρουσίαση του Οδοντωτού ως ιστορικού και πολιτιστικού άξονα της περιοχής." data-text-en="Focused presentation of Odontotos as a historical and cultural axis of the region." data-link="https://odontotos.gr" data-weather-focus="kalavryta" type="button" aria-label="Odontotos marker"></button>
+        <button class="map-pin pin-vouraikos" data-project-id="vouraikos" data-label="Vouraikos" data-title-el="Vouraikos.gr" data-title-en="Vouraikos.gr" data-text-el="Ανάδειξη του Βουραϊκού με φυσιολατρική αφήγηση, διαδρομές και περιφερειακή ταυτότητα." data-text-en="Showcasing Vouraikos through nature-driven storytelling, routes, and regional identity." data-link="https://vouraikos.gr" data-weather-focus="vouraikos" type="button" aria-label="Vouraikos marker"></button>
+        <button class="map-pin pin-future" data-project-id="future" data-label="Next Project" data-title-el="Επόμενο Περιφερειακό Project" data-title-en="Next Regional Project" data-text-el="Ο χώρος είναι έτοιμος για νέα projects με custom σημαία, metadata και σύνδεση με το οικοσύστημα." data-text-en="This stage is ready for new projects with custom flags, metadata, and ecosystem connections." data-link="#contact" data-weather-focus="patra" type="button" aria-label="Future project marker"></button>
+
+        <span class="city-callout city-patra">Πάτρα</span>
+        <span class="city-callout city-aigio">Αίγιο</span>
+        <span class="city-callout city-kalavryta">Καλάβρυτα</span>
+        <span class="city-callout city-kato-achaia">Κ. Αχαΐα</span>
+
+        <div class="map-meteo" aria-label="Regional weather strip">
+          <div class="meteo-item" data-weather-city="patra">
+            <small data-weather-city-label>Πάτρα</small>
+            <span data-weather-temp>20°C</span>
+            <em data-weather-cond>Καθαρός</em>
+          </div>
+          <div class="meteo-item" data-weather-city="aigio">
+            <small data-weather-city-label>Αίγιο</small>
+            <span data-weather-temp>19°C</span>
+            <em data-weather-cond>Παραλιακός αέρας</em>
+          </div>
+          <div class="meteo-item" data-weather-city="kalavryta">
+            <small data-weather-city-label>Καλάβρυτα</small>
+            <span data-weather-temp>13°C</span>
+            <em data-weather-cond>Ορεινό κλίμα</em>
+          </div>
+          <div class="meteo-item" data-weather-city="vouraikos">
+            <small data-weather-city-label>Βουραϊκός</small>
+            <span data-weather-temp>16°C</span>
+            <em data-weather-cond>Ιδανικό για διαδρομές</em>
+          </div>
+        </div>
+      </div>
+
+      <aside class="map-panel" aria-live="polite">
+        <span class="map-panel-kicker">Project Node</span>
+        <h4 id="mapPanelTitle">DiscoverDiakopto.gr</h4>
+        <p id="mapPanelText">Ψηφιακή πύλη για την ταυτότητα του Διακοπτού, με έμφαση σε εμπειρία, ιστορία και τουριστική εικόνα.</p>
+
+        <div class="map-legend">
+          <span class="map-legend-title">Επιλογή Node</span>
+          <div class="map-legend-row">
+            <button class="map-legend-btn active" data-map-target="diakopto" type="button">DiscoverDiakopto</button>
+            <button class="map-legend-btn" data-map-target="odontotos" type="button">Odontotos</button>
+            <button class="map-legend-btn" data-map-target="vouraikos" type="button">Vouraikos</button>
+            <button class="map-legend-btn" data-map-target="future" type="button">Next Project</button>
+          </div>
+        </div>
+
+        <div class="map-panel-actions">
+          <a class="map-btn map-btn-primary" id="mapPanelLink" href="https://discoverdiakopto.gr" target="_blank" rel="noopener noreferrer">Open Project</a>
+          <a class="map-btn map-btn-ghost" href="#projects">View Projects</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

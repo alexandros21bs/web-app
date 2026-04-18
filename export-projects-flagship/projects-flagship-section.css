@@ -1,0 +1,326 @@
+:root {
+  color-scheme: dark;
+  --bg: #0d1621;
+  --panel: #121d2a;
+  --panel-soft: rgba(255, 255, 255, 0.03);
+  --text: #efe7d5;
+  --text-soft: #c9c2b0;
+  --gold: #d8b06a;
+  --gold-soft: #ead2a2;
+}
+
+* { box-sizing: border-box; }
+
+.section {
+  padding: 4rem 0;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  border: 1px solid rgba(216, 176, 106, 0.45);
+  border-radius: 999px;
+  color: var(--gold-soft);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.72rem;
+}
+
+.section-title {
+  margin: 0.8rem 0 0;
+  color: var(--text);
+  font-size: clamp(1.4rem, 1.2rem + 1.2vw, 2rem);
+  line-height: 1.22;
+}
+
+.section-lead {
+  margin: 0.8rem 0 0;
+  color: var(--text-soft);
+  max-width: 76ch;
+}
+
+.grid-3 {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(160deg, rgba(22, 31, 45, 0.9), rgba(13, 19, 29, 0.92));
+  padding: 1rem;
+}
+
+.card h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.08rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.projects .card {
+  min-height: 15rem;
+  display: grid;
+  gap: 0.8rem;
+  align-content: start;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+.btn-primary {
+  color: #0d1621;
+  background: var(--gold);
+  border-color: rgba(216, 176, 106, 0.55);
+  padding: 0.45rem 0.95rem;
+}
+
+.btn-primary:hover {
+  background: #e5c688;
+}
+
+.btn-ghost {
+  color: #e7dfcd;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.2);
+  padding: 0.45rem 0.95rem;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.project-cta {
+  width: fit-content;
+  margin-top: 0.25rem;
+  font-size: 0.86rem;
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.project-preview-btn {
+  min-height: 2.5rem;
+  padding-inline: 0.95rem;
+  font-size: 0.85rem;
+}
+
+.project-tag {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(216, 176, 106, 0.45);
+  color: var(--gold-soft);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.68rem;
+}
+
+.project-media {
+  border-radius: 12px;
+  min-height: 10rem;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(130deg, rgba(216, 176, 106, 0.22), rgba(85, 126, 165, 0.2)), linear-gradient(160deg, #1a2736, #131c28);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(7, 11, 17, 0.75);
+}
+
+.project-media-link {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.project-media-link:hover .project-media,
+.project-media-link:focus-visible .project-media {
+  transform: scale(1.015);
+  transition: transform 0.25s ease;
+}
+
+.project-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 12, 18, 0.05), rgba(8, 12, 18, 0.35));
+  pointer-events: none;
+}
+
+.project-media.no-image::before {
+  content: "Εικόνα Project";
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.7rem;
+  z-index: 1;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #efe2c3;
+  text-transform: uppercase;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 10, 16, 0.88);
+  backdrop-filter: blur(10px);
+  z-index: 2200;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  padding: 1.2rem;
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-inner {
+  width: min(100%, 980px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(160deg, rgba(22, 31, 45, 0.95), rgba(13, 19, 29, 0.95));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+  padding: 1rem;
+}
+
+.lightbox-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.lightbox-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.lightbox-title {
+  font-size: 1.1rem;
+  color: #f2e5cb;
+}
+
+.lightbox-mode {
+  min-height: 2rem;
+  padding: 0.22rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  color: #e8e0cf;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.lightbox-mode.active {
+  border-color: rgba(216, 176, 106, 0.56);
+  background: rgba(216, 176, 106, 0.15);
+  color: #fff5dc;
+}
+
+.lightbox-mode.live-priority {
+  border-color: rgba(216, 176, 106, 0.38);
+}
+
+.lightbox-close {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  cursor: pointer;
+}
+
+.lightbox-image {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 10, 16, 0.7);
+}
+
+.lightbox-live-wrap {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 10, 16, 0.75);
+  overflow: hidden;
+  min-height: 68vh;
+  display: none;
+}
+
+.lightbox.live-mode .lightbox-live-wrap {
+  display: block;
+}
+
+.lightbox.live-mode .lightbox-image {
+  display: none;
+}
+
+.lightbox-iframe {
+  width: 100%;
+  height: 68vh;
+  border: 0;
+  background: #0b111a;
+}
+
+.lightbox-live-note {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.65rem 0.8rem;
+  font-size: 0.8rem;
+  color: #d6cfbf;
+}
+
+.lightbox-actions {
+  margin-top: 0.85rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.lightbox-nav {
+  min-height: 2.5rem;
+  padding-inline: 0.95rem;
+}
+
+@media (max-width: 920px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
