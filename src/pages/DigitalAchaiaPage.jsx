@@ -513,7 +513,7 @@ export default function DigitalAchaiaPage() {
           <div className="flagship-grid">
             <article className="flagship-card">
               <span className="project-tag">Flagship Project</span>
-              <h3>DiscoverDiakopto.gr</h3>
+              <h3 className="text-[#67E8F9]">DiscoverDiakopto.gr</h3>
               <p>Ψηφιακή βιτρίνα του Διακοπτού με έμφαση στην αυθεντική εμπειρία, τη φιλοξενία και τη σύνδεση θάλασσας και βουνού.</p>
               <a className="project-media-link" href="https://discoverdiakopto.gr" target="_blank" rel="noopener noreferrer" aria-label="Άνοιγμα DiscoverDiakopto.gr">
                 <div className="project-media" data-project="discoverdiakopto-preview" role="img" aria-label="DiscoverDiakopto.gr εικόνα" />
@@ -526,7 +526,7 @@ export default function DigitalAchaiaPage() {
 
             <article className="flagship-card">
               <span className="project-tag">Flagship Project</span>
-              <h3>Odontotos.gr</h3>
+              <h3 className="text-[#67E8F9]">Odontotos.gr</h3>
               <p>Πλατφόρμα που αναδεικνύει τη μοναδικότητα του Οδοντωτού ως ιστορικό, τουριστικό και πολιτιστικό σύμβολο της περιοχής.</p>
               <a className="project-media-link" href="https://odontotos.gr" target="_blank" rel="noopener noreferrer" aria-label="Άνοιγμα Odontotos.gr">
                 <div className="project-media" data-project="odontotos-preview" role="img" aria-label="Odontotos.gr εικόνα" />
@@ -539,7 +539,7 @@ export default function DigitalAchaiaPage() {
 
             <article className="flagship-card">
               <span className="project-tag">Flagship Project</span>
-              <h3>Vouraikos.gr</h3>
+              <h3 className="text-[#67E8F9]">Vouraikos.gr</h3>
               <p>Στοχευμένη παρουσίαση του Βουραϊκού με φυσιολατρικό χαρακτήρα, περιπατητική ταυτότητα και αφηγηματική συνέπεια.</p>
               <a className="project-media-link" href="https://vouraikos.gr" target="_blank" rel="noopener noreferrer" aria-label="Άνοιγμα Vouraikos.gr">
                 <div className="project-media" data-project="vouraikos-preview" role="img" aria-label="Vouraikos.gr εικόνα" />

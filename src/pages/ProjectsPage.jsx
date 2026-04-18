@@ -1,104 +1,247 @@
 import Seo from '../components/common/Seo'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import logAni from '../../log_ani.svg'
+import arisImage from '../../ARIS.png'
+import adaImage from '../../ADA.png'
+import argImage from '../../ARG.png'
+import litoImage from '../../LITO.png'
+import timoniImage from '../../TIMONI.png'
+import asthenImage from '../../ASTHEN.png'
+import webhoImage from '../../WEB-HO.png'
+import venthImage from '../../VENTH.png'
+import asthImage from '../../ASTH.png'
+import screenshot18 from '../../Screenshot 2026-04-18 at 18.07.27.png'
+import digitalImage from '../../DIGITAL.png'
+import ven1Image from '../../VEN1.png'
+import tt2Image from '../../tt2.png'
+import nousImage from '../../NOUS.png'
+import nnnnImage from '../../nnnn.png'
 
 const projectPlaceholders = [
   {
-    id: '01',
-    badge: 'Flagship Project',
-    visual: 'Signature Preview',
-    title: 'Corporate Website Launch',
-    category: 'Website Development',
-    text: 'Εταιρική ιστοσελίδα με στόχο καλύτερη online εικόνα, αυξημένη αξιοπιστία και αποτελεσματικό lead generation.',
-    imageSrc: '/images/ecosystem/discoverdiakopto-preview.jpg',
-    projectUrl: 'https://discoverdiakopto.gr',
-  },
-  {
-    id: '02',
-    badge: 'Flagship Project',
-    visual: 'Destination Preview',
-    title: 'eShop Performance Setup',
-    category: 'eCommerce',
-    text: 'eShop με έμφαση σε conversion flow, mobile-first εμπειρία και καθαρή δομή προϊόντων για μέγιστη απόδοση.',
-    imageSrc: '/images/ecosystem/odontotos-preview.jpg',
-    projectUrl: 'https://odontotos.gr',
-  },
-  {
-    id: '03',
-    badge: 'Flagship Project',
-    visual: 'Nature Preview',
-    title: 'Premium Redesign Project',
-    category: 'Redesign',
-    text: 'Ανασχεδιασμός υπάρχοντος site για καθαρότερο UX, ισχυρότερη brand εικόνα και σύγχρονη παρουσίαση.',
-    imageSrc: '/images/ecosystem/vouraikos-preview.jpg',
-    projectUrl: 'https://vouraikos.gr',
-  },
-  {
     id: '04',
-    badge: 'Curated Project',
-    visual: 'Visual Placeholder',
-    title: 'Brand Identity System',
-    category: 'Branding',
-    text: 'Οπτική ταυτότητα, design system και brand assets για web, print και social με συνεπή χαρακτήρα.',
-    imageSrc: '',
-    projectUrl: '',
+    title: 'Honeymoon Hotel Santorini',
+    category: 'Hotel Showcase Project',
+    text: 'Premium hotel παρουσίαση με έμφαση στα δωμάτια, τις παροχές και την εμπειρία φιλοξενίας, με καθαρή δομή, elegant αισθητική και conversion-first προσέγγιση.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Screenshot Placeholder',
+    imageSrc: arisImage,
+    iframeSrc: '',
+    isFeatured: true,
   },
   {
     id: '05',
-    badge: 'Curated Project',
-    visual: 'Project Placeholder',
-    title: 'SEO & Visibility Growth',
-    category: 'SEO Strategy',
-    text: 'Τεχνικό SEO και βελτιστοποίηση περιεχομένου για ενίσχυση οργανικής παρουσίας και ποιοτικής επισκεψιμότητας.',
-    imageSrc: '',
-    projectUrl: '',
+    title: 'Αδαμαντία | Ψυχολόγος | Χανιά',
+    category: 'Psychologist Profile Project',
+    text: 'Premium παρουσίαση ψυχολόγου με έμφαση στις υπηρεσίες, το επιστημονικό προφίλ, την ενσυναίσθηση και την αίσθηση εμπιστοσύνης, μέσα από καθαρή και ήρεμη ψηφιακή αισθητική.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: adaImage,
+    iframeSrc: '',
+    isFeatured: false,
   },
   {
     id: '06',
-    badge: 'Curated Project',
-    visual: 'Visual Showcase',
-    title: 'Digital Campaign Presence',
-    category: 'Digital Marketing',
-    text: 'Creative campaign setup με στοχευμένα assets, συνεπή επικοινωνία brand και στρατηγική τοποθέτηση στα κατάλληλα κανάλια.',
-    imageSrc: '',
-    projectUrl: '',
+    title: 'Εργαστήρι Ζυμαρικών Διακοπτό',
+    category: 'eShop Handmade Pasta Project',
+    text: 'Premium eShop για χειροποίητα ζυμαρικά με έμφαση στη γαστρονομική ταυτότητα, την καθαρή παρουσίαση προϊόντων, την εύκολη αγορά και μια ζεστή artisan αισθητική.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: argImage,
+    iframeSrc: '',
+    isFeatured: false,
+  },
+  {
+    id: '01',
+    title: 'Τουριστικός Οδηγός Διακοπτού',
+    category: 'Local Guide Project',
+    text: 'Ψηφιακός οδηγός περιοχής με έμφαση στην τοπική ταυτότητα, την εμπειρία επισκέπτη, τα σημεία ενδιαφέροντος και μια πιο σύγχρονη αισθητική τουριστικής προβολής.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: '/images/ecosystem/discoverdiakopto-preview.jpg',
+    iframeSrc: '',
+    isFeatured: true,
+  },
+  {
+    id: '02',
+    title: 'Θεματικό Project Οδοντωτός',
+    category: 'Destination & Route Concept',
+    text: 'Θεματική ψηφιακή παρουσίαση διαδρομής, εμπειρίας και πολιτιστικού ενδιαφέροντος με premium προσέγγιση, καθαρή δομή και πιο ατμοσφαιρικό χαρακτήρα προβολής.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Visual Preview',
+    imageSrc: '/images/ecosystem/odontotos-preview.jpg',
+    iframeSrc: '',
+    isFeatured: true,
+  },
+  {
+    id: '03',
+    title: 'Θεματικό Project Βουραικός',
+    category: 'Nature & Experience Concept',
+    text: 'Placeholder concept για παρουσίαση φυσικού τοπίου, διαδρομών, εμπειριών και σημείων ενδιαφέροντος με πιο immersive και σύγχρονη ψηφιακή αισθητική.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Visual Preview',
+    imageSrc: '/images/ecosystem/vouraikos-preview.jpg',
+    iframeSrc: '',
+    isFeatured: false,
   },
   {
     id: '07',
-    badge: 'Initiative Project',
-    visual: 'Editorial Preview',
-    title: 'Digital Achaia: Destination Story',
-    category: 'Regional Initiative',
-    text: 'Ψηφιακή προβολή περιοχής με narrative δομή, τοπική ταυτότητα, τουριστικό χαρακτήρα και premium αισθητική.',
-    imageSrc: '',
-    projectUrl: '/digital-achaia',
+    title: 'Lito Apartments | Παλαιοχώρα Χανίων',
+    category: 'Hotel & Apartments Project',
+    text: 'Premium παρουσίαση καταλύματος για την Παλαιοχώρα Χανίων, με έμφαση στην ποιοτική διαμονή, το μοναδικό πλεονέκτημα της τοποθεσίας, τις σύγχρονες παροχές και την άμεση ευκολία κράτησης μέσα από μια καθαρή, καλαίσθητη τουριστική εμπειρία. Η σελίδα αναδεικνύει με ισορροπία την αίσθηση φιλοξενίας, τις στιγμές χαλάρωσης και τον χαρακτήρα του προορισμού, προσφέροντας στον επισκέπτη σαφή πληροφόρηση, εμπιστοσύνη και ισχυρό κίνητρο για άμεση επιλογή διαμονής.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Screenshot Placeholder',
+    imageSrc: litoImage,
+    iframeSrc: '',
+    isFeatured: true,
   },
   {
     id: '08',
-    badge: 'Initiative Project',
-    visual: 'Concept Placeholder',
-    title: 'Route & Experience Concept',
-    category: 'Tourism Content',
-    text: 'Θεματική διαδρομή με curated σημεία ενδιαφέροντος, οργανωμένη ψηφιακή εμπειρία και visual storytelling.',
+    title: 'Online Βιβλιοπωλείο Διακοπτό',
+    category: 'eBooks, Audio & Self-Growth Platform',
+    text: 'The Steering Wheel of Our Lives - Finally in Our Hands. Μια σύγχρονη online πλατφόρμα με ebooks, audio περιεχόμενο και επιλεγμένα άρθρα αυτοβελτίωσης, αυτοθεραπείας και αφύπνισης, σχεδιασμένη για όσους θέλουν να πάρουν ξανά το τιμόνι της ζωής τους στα χέρια τους. Το project σε καθοδηγεί να ακούσεις τον Ανώτερο Εαυτό σου, να συνδεθείς με την Ψυχή σου, το Σύμπαν, τη Μητέρα Φύση και τη Θεϊκή Ενέργεια μέσα από οργανωμένες κατηγορίες, ποιοτικό περιεχόμενο και καθαρή εμπειρία πλοήγησης. Με premium UX δομή, έξυπνη αναζήτηση και εύκολη πρόσβαση σε γνώση και έμπνευση, ο χρήστης ανακαλύπτει καθημερινά εργαλεία εσωτερικής ισορροπίας, πνευματικής εξέλιξης και ουσιαστικής προσωπικής μεταμόρφωσης.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: timoniImage,
+    iframeSrc: '',
+    isFeatured: false,
+  },
+  {
+    id: '13',
+    title: 'Ψηφιακή Πλατφόρμα Περιφέρειας',
+    category: 'Regional Growth & Visibility Platform',
+    text: 'Η πλατφόρμα Digital Achaia σχεδιάστηκε για να ενισχύσει την ψηφιακή ταυτότητα της περιοχής, συνδέοντας επιχειρήσεις, εμπειρίες και τοπικές πρωτοβουλίες μέσα σε ένα ενιαίο και σύγχρονο οικοσύστημα προβολής. Με premium αισθητική, καθαρή πλοήγηση, σωστά δομημένο UX και στοχευμένη στρατηγική περιεχομένου, λειτουργεί ως δυναμικό digital hub ανάπτυξης και εξωστρέφειας για κατοίκους, επισκέπτες, επαγγελματίες και φορείς, αναδεικνύοντας τη συνολική αξία και προοπτική της Αχαΐας.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: digitalImage,
+    iframeSrc: '',
+    isFeatured: true,
+  },
+  {
+    id: '14',
+    title: 'Harmony Books | Πλατφόρμα Βιβλίων & Άρθρων',
+    category: 'Books Marketplace & Editorial Content',
+    text: 'Πλατφόρμα για πώληση βιβλίων από διαφορετικούς συγγραφείς, με οργανωμένες κατηγορίες, έξυπνη αναζήτηση και εύκολη εμπειρία αγοράς. Παράλληλα, ενσωματώνει αρθρογραφία και θεματικές ενότητες γύρω από λογοτεχνία, κουλτούρα και κοινωνία, με ξεκάθαρη κατεύθυνση περιεχομένου εκτός πολιτικής θεματολογίας. Ιδιαίτερη έμφαση δίνεται σε βιβλία για αυτοθεραπεία, σύνδεση με τη φύση, πνευματική αφύπνιση και οικολογία, δημιουργώντας μια ουσιαστική βιβλιοθήκη προσωπικής εξέλιξης και οικολογικής συνείδησης.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: tt2Image,
+    iframeSrc: '',
+    isFeatured: true,
+  },
+  {
+    id: '15',
+    title: 'Art Addicts | Portfolio & Community Platform',
+    category: 'Creative Portfolio, Media & Psychology Hub',
+    text: 'Το Art Addicts είναι μια ανοιχτή, σύγχρονη πλατφόρμα portfolio και περιεχομένου αφιερωμένη στη ζωγραφική, τη μουσική, την ποίηση και συνολικά σε όλες τις μορφές τέχνης που καλλιεργούν έκφραση και σύνδεση. Το project συνδυάζει δημιουργικά έργα, επιλεγμένη αρθρογραφία, θεματικές ψυχολογίας και πολιτιστικά insights, προσφέροντας έναν ζωντανό ψηφιακό χώρο όπου το κοινό μπορεί να ανακαλύπτει ιδέες, να έρχεται σε επαφή με δημιουργούς και να συμμετέχει ενεργά σε μια κοινότητα έμπνευσης. Με καθαρή δομή, φιλικό UX και ατμοσφαιρική αισθητική, η πλατφόρμα λειτουργεί ως σημείο συνάντησης τέχνης, σκέψης και ανθρώπινης έκφρασης.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
     imageSrc: '',
-    projectUrl: '',
+    iframeSrc: '',
+    isFeatured: false,
+  },
+  {
+    id: '12',
+    title: 'Venthus | Art & Event Management',
+    category: 'Event Management & Branding',
+    text: 'Premium παρουσίαση εταιρείας διοργάνωσης εκδηλώσεων με έμφαση σε artistic κατεύθυνση, management υπηρεσίες, portfolio εκδηλώσεων, παροχές ζωγραφικής, δημιουργία βιτρίνας και στρατηγική προώθηση με ισχυρή brand ταυτότητα. Η Venthus είναι ένα σύγχρονο brand με επίκεντρο την οργάνωση εκδηλώσεων και τις δημιουργικές προωθητικές υπηρεσίες, συνδυάζοντας αισθητική, επαγγελματισμό και ολοκληρωμένη εμπειρία επικοινωνίας. Το project σχεδιάστηκε με στόχο να αποτυπώνει τον πολυδιάστατο χαρακτήρα της επιχείρησης, προβάλλοντας με καθαρή δομή τις υπηρεσίες της, την καλλιτεχνική της ταυτότητα και τη σύγχρονη ψηφιακή της παρουσία.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: screenshot18,
+    iframeSrc: '',
+    isFeatured: true,
+  },
+  {
+    id: '10',
+    title: 'Web Host Pro | Αιγιαλεία',
+    category: 'Web Agency Showcase',
+    text: 'Η Web Host Pro στην Αιγιαλεία παρουσιάζει ένα σύγχρονο και επαγγελματικό πλαίσιο ψηφιακών υπηρεσιών, με έμφαση στην κατασκευή ιστοσελίδων, το web hosting, το SEO και το digital marketing. Με στρατηγική προσέγγιση, καθαρή αισθητική και τοπική κατεύθυνση, υποστηρίζει επιχειρήσεις που θέλουν να αναβαθμίσουν την online παρουσία τους και να αναπτυχθούν ουσιαστικά στο ψηφιακό περιβάλλον.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: ven1Image,
+    iframeSrc: '',
+    isFeatured: true,
+  },
+  {
+    id: '11',
+    title: 'Ασθενοφόρα 24/7 | Ρόδος - Λήμνος - Πειραιάς - Αθήνα',
+    category: 'Medical Emergency Service Page',
+    text: 'Σελίδα υπηρεσίας ασθενοφόρων 24/7 για Ρόδο και Λήμνο, με σαφή δομή επικοινωνίας, ταχεία πρόσβαση σε αριθμούς ανάγκης και αξιόπιστη παρουσίαση έκτακτης ιατρικής μεταφοράς.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: asthImage,
+    iframeSrc: '',
+    isFeatured: false,
   },
   {
     id: '09',
-    badge: 'Curated Project',
-    visual: 'Service Placeholder',
-    title: 'Hosting & Support Care',
-    category: 'Maintenance',
-    text: 'Τεχνική υποστήριξη, uptime monitoring και performance βελτιώσεις για σταθερή, ασφαλή και γρήγορη λειτουργία.',
+    title: 'Rebuild | Διακομιδή Ασθενών Αθήνα - Πάτρα',
+    category: 'Medical Transport Service Page',
+    text: 'Σελίδα υπηρεσίας για διακομιδή ασθενών με route focus Αθήνα - Πάτρα, σαφή δομή πληροφορίας, αξιοπιστία επικοινωνίας και premium παρουσίαση κρίσιμων υπηρεσιών.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: asthenImage,
+    iframeSrc: '',
+    isFeatured: false,
+  },
+  {
+    id: '16',
+    title: 'Noutelos | UI/UX & Content | Offcial Partner web Host Pro',
+    category: 'UI/UX Design & Content Creation',
+    text: 'Ο Noutelos αποτελεί σταθερό, βασικό και ιδιαίτερα αξιόπιστο συνεργάτη της Web Host Pro, με ισχυρή κατεύθυνση στο UI/UX design και στη δημιουργία περιεχομένου. Το project αναδεικνύει τη σχεδιαστική του προσέγγιση, την καθαρή εμπειρία χρήστη και την ικανότητά του να μετατρέπει ιδέες σε ουσιαστικό digital περιεχόμενο με συνέπεια, αισθητική και στρατηγική. Μέσα από τη συνεργασία του με τη Web Host Pro, συμβάλλει ενεργά στη διαμόρφωση σύγχρονων ψηφιακών παρουσιών που συνδυάζουν λειτουργικότητα, ταυτότητα και επαγγελματική ποιότητα.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: nousImage,
+    iframeSrc: '',
+    isFeatured: true,
+  },
+  {
+    id: '17',
+    title: 'Fuature Widget 365 Orthodoxy',
+    category: 'Orthodox Spirituality Digital App',
+    text: '365 Orthodoxy. Ένα εξελισσόμενο ψηφιακό project με επίκεντρο την καθημερινή βιβλική έμπνευση και τις υπενθυμίσεις εορτολογίου. Με μινιμαλιστική προσέγγιση, εκλεπτυσμένα glass-style visuals και καθαρή, intuitive εμπειρία χρήστη, σχεδιάζεται ώστε να ενώνει την ορθόδοξη πνευματικότητα με μια σύγχρονη ψηφιακή αισθητική.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: 'Project Screenshot',
+    imageSrc: nnnnImage,
+    iframeSrc: '',
+    isFeatured: true,
+  },
+  {
+    id: '18',
+    title: 'Coming Soon',
+    category: 'New Project Placeholder',
+    text: 'Placeholder για νέο project. Το περιεχόμενο θα προστεθεί σύντομα.',
+    cta: 'Δες το έργο',
+    previewType: 'image',
+    previewLabel: '',
     imageSrc: '',
-    projectUrl: '',
+    iframeSrc: '',
+    isFeatured: false,
   },
 ]
 
 export default function ProjectsPage() {
   const navigate = useNavigate()
+  const [expandedCards, setExpandedCards] = useState({})
   const gridVariants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.07, delayChildren: 0.04 } },
@@ -108,6 +251,13 @@ export default function ProjectsPage() {
     hidden: { opacity: 0, y: 18 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: 'easeOut' } },
   }
+
+  const toggleCardText = (id) => {
+    setExpandedCards((prev) => ({ ...prev, [id]: !prev[id] }))
+  }
+
+  const maxTextLength = 200
+
   return (
     <section className="section-space relative overflow-hidden">
       <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-cyan-300/10 blur-3xl" />
@@ -129,11 +279,10 @@ export default function ProjectsPage() {
               Έργα
             </p>
             <h1 className="mt-4 text-4xl font-semibold text-[#67E8F9] md:text-6xl">
-              Portfolio — websites, eShop, branding, hosting και Digital Achaia initiatives
+              Επιλεγμένα έργα, concepts και ψηφιακές κατευθύνσεις
             </h1>
             <p className="mt-6 text-lg leading-8 text-white/70">
-              Επιλογή digital projects που αντιπροσωπεύουν τη μεθοδολογία, τον τεχνικό χαρακτήρα
-              και το ύφος της Web Host Pro.
+              Μια πρώτη curated επιλογή από projects, showcase concepts και δημιουργικές κατευθύνσεις που αποτυπώνουν τη φιλοσοφία, την αισθητική και τη στρατηγική προσέγγιση της Web Host Pro. Η σελίδα αυτή λειτουργεί ως premium portfolio preview για guides, destination concepts και ψηφιακές παρουσίες που θα εμπλουτιστούν σταδιακά με πραγματικά previews και τελικό υλικό.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               <span className="trust-label">Websites & eCommerce</span>
@@ -187,91 +336,145 @@ export default function ProjectsPage() {
         </div>
 
         <motion.div
-          className="mt-14 grid gap-5 md:grid-cols-3"
+          className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
           variants={gridVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.06 }}
         >
-          {projectPlaceholders.map((entry) => (
+          {projectPlaceholders.map((entry, index) => (
+            (() => {
+              const isLongText = entry.text.length > maxTextLength
+              const isExpanded = Boolean(expandedCards[entry.id])
+              const displayText = isLongText && !isExpanded
+                ? `${entry.text.slice(0, maxTextLength).trimEnd()}...`
+                : entry.text
+
+              return (
             <motion.article
               key={entry.id}
-              className="glass service-card flagship-card group relative overflow-hidden rounded-[28px] border border-white/12 bg-white/[0.045] p-6 shadow-[0_12px_34px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-1.5 hover:border-cyan-200/30 hover:shadow-[0_20px_46px_rgba(0,0,0,0.36)]"
+              className={`glass service-card group relative flex h-full min-h-[430px] flex-col overflow-hidden rounded-[26px] border p-6 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_42px_rgba(6,14,26,0.44)] ${entry.isFeatured ? 'border-amber-300/24 bg-white/[0.05] hover:border-amber-200/46' : 'border-white/10 bg-white/[0.04] hover:border-cyan-200/28'}`}
               variants={cardVariants}
             >
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-cyan-200/12 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
-              <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-amber-300/14 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
-              <span className="project-tag">
-                {entry.badge}
-              </span>
-              <p className="text-xs uppercase tracking-[0.2em] text-cyan-100/70">
-                {entry.category}
-              </p>
-              <h3 className="mt-3 text-2xl font-semibold text-[#67E8F9]">{entry.title}</h3>
-              <p className="mt-4 leading-7 text-white/65">{entry.text}</p>
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-cyan-200/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full bg-amber-300/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute left-4 top-4 z-20 flex h-3 w-3 items-center justify-center" aria-hidden="true">
+                <span className="absolute inline-flex h-3 w-3 animate-ping rounded-full bg-emerald-400/70" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.7)]" />
+              </div>
+              <div className="absolute right-4 top-4 z-20 rounded-full border border-cyan-200/30 bg-[#0b1525]/75 px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-cyan-100/90">
+                #{String(index + 1).padStart(2, '0')}
+              </div>
 
-              {entry.projectUrl ? (
-                <a
-                  className="project-media-link"
-                  href={entry.projectUrl}
-                  target={entry.projectUrl.startsWith('http') ? '_blank' : undefined}
-                  rel={entry.projectUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  aria-label={`Άνοιγμα ${entry.title}`}
-                >
-                  <div
-                    className={`project-media${entry.imageSrc ? '' : ' no-image'}`}
-                    role="img"
-                    aria-label={`${entry.title} εικόνα`}
-                    style={entry.imageSrc ? { backgroundImage: `url(${entry.imageSrc})` } : undefined}
-                  />
-                </a>
+              {entry.previewType === 'iframe' ? (
+                <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl border border-cyan-200/18 bg-gradient-to-br from-cyan-300/12 via-white/5 to-amber-300/8">
+                  <div className="absolute inset-3 rounded-xl border border-cyan-200/20 bg-[#0b1525]/75" />
+                </div>
               ) : (
-                <div className="project-media no-image" role="img" aria-label={`${entry.title} placeholder`}>
-                  <span className="portfolio-thumb-label absolute left-3 top-3 rounded-full border border-white/20 bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-white/75">{entry.visual}</span>
+                <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br from-amber-300/12 via-white/5 to-cyan-300/10">
+                  {entry.imageSrc ? (
+                    <img
+                      src={entry.imageSrc}
+                      alt={`${entry.title} preview`}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : null}
+                  <div className="absolute inset-0 opacity-40 [background:linear-gradient(140deg,rgba(255,255,255,0.08),transparent_60%)]" />
+                  <div className="absolute inset-2 rounded-xl border border-white/10 bg-white/[0.02] shadow-[inset_0_0_26px_rgba(103,232,249,0.08)]" />
                 </div>
               )}
 
-              <div className="project-actions">
-                {entry.projectUrl ? (
-                  <a
-                    className="project-cta transition duration-300 hover:-translate-y-0.5"
-                    href={entry.projectUrl}
-                    target={entry.projectUrl.startsWith('http') ? '_blank' : undefined}
-                    rel={entry.projectUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  >
-                    Δείτε το site
-                  </a>
-                ) : (
-                  <button className="project-cta transition duration-300 hover:-translate-y-0.5" type="button">Δείτε το site</button>
-                )}
-                <button className="project-preview-btn transition duration-300 hover:-translate-y-0.5" type="button">Προεπισκόπηση</button>
-              </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-200/90">
+                {entry.category}
+              </p>
+              <h3 className="mt-3 text-[1.45rem] font-semibold leading-8 text-[#67E8F9]">
+                {entry.title}
+              </h3>
+              <p className="mt-4 leading-7 text-white/65">
+                {displayText}
+              </p>
+              {isLongText ? (
+                <button
+                  type="button"
+                  onClick={() => toggleCardText(entry.id)}
+                  className="mt-2 self-start text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-200/90 transition hover:text-amber-100"
+                >
+                  {isExpanded ? 'Λιγότερα' : 'Περισσότερα'}
+                </button>
+              ) : null}
+              <span className="inline-cta mt-auto ml-auto pt-6 text-right text-[#67E8F9] transition group-hover:text-amber-100">
+                {entry.cta} <ArrowRight size={15} />
+              </span>
             </motion.article>
+              )
+            })()
           ))}
         </motion.div>
 
-        <div className="section-end-block glass-strong page-glow relative mt-16 overflow-hidden rounded-[30px] border border-white/12 bg-white/[0.035] p-7 md:p-10">
+        <section className="section-end-block glass-strong page-glow relative mt-14 overflow-hidden rounded-[30px] border border-white/12 bg-white/[0.035] p-6 md:p-8 lg:p-10" aria-labelledby="projects-newsletter-title">
+          <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-cyan-300/12 blur-3xl" />
+          <div className="pointer-events-none absolute -left-12 bottom-0 h-32 w-32 rounded-full bg-amber-300/10 blur-3xl" />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-amber-300/10 to-transparent" />
-          <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/75">Portfolio Flow</p>
-          <h2 className="mt-3 text-2xl font-semibold text-[#67E8F9] md:text-3xl">
-            Έχετε project idea; πάμε να το περάσουμε από concept σε υλοποίηση
-          </h2>
-          <p className="mt-3 max-w-3xl text-white/65">
-            Στείλτε μας το concept σας για website, eShop, redesign ή regional initiative
-            και θα οργανώσουμε πρόταση με καθαρή στρατηγική κατεύθυνση.
-          </p>
-          <div className="cta-row mt-6">
-            <Link to="/contact" className="premium-btn btn btn-primary transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(212,168,79,0.28)]">
-              Συζητήστε το project σας
-            </Link>
-            <Link to="/services" className="premium-btn btn btn-secondary transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(103,232,249,0.24)]">
-              Δείτε υπηρεσίες
-            </Link>
-            <Link to="/digital-achaia" className="btn-inline transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(103,232,249,0.16)]">
-              Ανακαλύψτε την κατεύθυνση
-            </Link>
+          <div className="relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-cyan-100/80">Newsletter</p>
+              <h2 id="projects-newsletter-title" className="mt-3 max-w-2xl text-2xl font-semibold leading-tight text-[#67E8F9] md:text-3xl">
+                Μείνετε ενημερωμένοι για νέα έργα και digital concepts
+              </h2>
+              <p className="mt-4 max-w-2xl leading-7 text-white/65">
+                Εγγραφείτε για να λαμβάνετε νέα γύρω από projects, δημιουργικές κατευθύνσεις, portfolio updates και σύγχρονες ψηφιακές ιδέες από τη Web Host Pro.
+              </p>
+            </div>
+
+            <form
+              className="rounded-2xl border border-cyan-200/20 bg-[#0b1525]/70 p-4 md:p-5"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <label htmlFor="projects-newsletter-email" className="sr-only">
+                Το email σας
+              </label>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <input
+                  id="projects-newsletter-email"
+                  type="email"
+                  placeholder="Το email σας"
+                  className="h-12 flex-1 rounded-xl border border-white/14 bg-white/[0.04] px-4 text-sm text-white placeholder:text-white/45 outline-none transition focus:border-cyan-200/45 focus:shadow-[0_0_0_3px_rgba(103,232,249,0.12)]"
+                />
+                <button
+                  type="submit"
+                  className="h-12 rounded-xl border border-amber-200/60 bg-gradient-to-r from-amber-300 to-amber-400 px-6 text-sm font-semibold text-[#132132] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(212,168,79,0.3)]"
+                >
+                  Εγγραφή
+                </button>
+              </div>
+            </form>
           </div>
-        </div>
+          <p className="relative mt-4 text-sm leading-6 text-white/55 md:mt-5">
+            Updates για νέα έργα, creative concepts και portfolio previews από το οικοσύστημα της Web Host Pro.
+          </p>
+
+          <div className="relative mt-7 border-t border-white/10 pt-7 md:mt-8 md:pt-8">
+            <p className="text-xs uppercase tracking-[0.16em] text-cyan-100/75">Portfolio Flow</p>
+            <h2 className="mt-3 text-2xl font-semibold text-[#67E8F9] md:text-3xl">
+            Θέλεις το επόμενο project να παρουσιαστεί σωστά και με premium ψηφιακή εικόνα;
+            </h2>
+            <p className="mt-3 max-w-3xl text-white/65">
+              Η Web Host Pro δημιουργεί projects, παρουσιάσεις και digital concepts με καθαρή αισθητική, σωστή δομή και επαγγελματική στρατηγική παρουσίασης.
+            </p>
+            <div className="cta-row mt-6">
+              <Link to="/contact" className="premium-btn btn btn-primary transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(212,168,79,0.28)]">
+                Ζήτα προσφορά
+              </Link>
+              <Link to="/contact" className="premium-btn btn btn-secondary transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(103,232,249,0.24)]">
+                Πες μας την ιδέα σου
+              </Link>
+              <Link to="/contact" className="premium-btn btn btn-secondary transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(103,232,249,0.24)]">
+                Ζήτα μας προτζεκτ
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   )

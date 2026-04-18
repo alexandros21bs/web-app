@@ -11,6 +11,13 @@ import {
   Palette,
 } from 'lucide-react'
 import Seo from '../components/common/Seo'
+import litoImage from '../../LITO.png'
+import ven1Image from '../../VEN1.png'
+import artImage from '../../ART.png'
+import arisImage from '../../ARIS.png'
+import arg2Image from '../../ARG2.png'
+import timoniImage from '../../TIMONI.png'
+import tt2Image from '../../tt2.png'
 
 export default function HomePage() {
   const [previewModal, setPreviewModal] = useState({ open: false, index: 0, mode: 'live' })
@@ -271,69 +278,69 @@ export default function HomePage() {
 
   const portfolioPlaceholderCards = [
     {
-      title: 'Discover Diakopto',
-      category: 'Signature Local Guide',
-      text: 'Curated ψηφιακή παρουσίαση περιοχής με έμφαση στην αυθεντική εμπειρία, την τοπική ταυτότητα και μια σύγχρονη αισθητική προσέγγιση προβολής.',
+      title: 'Lito Apartments | Παλαιοχώρα Χανίων',
+      category: 'Hotel & Apartments Project',
+      text: 'Premium παρουσίαση καταλύματος για την Παλαιοχώρα Χανίων, με έμφαση στην ποιοτική διαμονή, το μοναδικό πλεονέκτημα της τοποθεσίας, τις σύγχρονες παροχές και την άμεση ευκολία κράτησης μέσα από μια καθαρή, καλαίσθητη τουριστική εμπειρία.',
       cta: 'Δες το έργο',
       previewType: 'image',
       previewLabel: 'Signature Preview',
-      imageSrc: '/images/ecosystem/discoverdiakopto-preview.jpg',
+      imageSrc: litoImage,
       iframeSrc: 'https://discoverdiakopto.gr',
       projectUrl: 'https://discoverdiakopto.gr',
       isFeatured: true,
     },
     {
-      title: 'Odontotos Project',
-      category: 'Destination Editorial Concept',
-      text: 'Premium concept για διαδρομή, εμπειρία και πολιτιστικό ενδιαφέρον, σχεδιασμένο με cinematic κατεύθυνση και υψηλή οπτική συνοχή.',
-      cta: 'Δες το έργο',
-      previewType: 'iframe',
-      previewLabel: 'Live Preview Area',
-      imageSrc: '',
-      iframeSrc: '',
-      isFeatured: true,
-    },
-    {
-      title: 'Vouraikos Project',
-      category: 'Nature & Experience Presentation',
-      text: 'Placeholder παρουσίαση για φυσικό τοπίο, διαδρομές και θεματικά σημεία ενδιαφέροντος με ατμοσφαιρική ψηφιακή απόδοση και πιο immersive χαρακτήρα.',
-      cta: 'Δες το έργο',
-      previewType: 'image',
-      previewLabel: 'Visual Showcase',
-      imageSrc: '',
-      iframeSrc: '',
-      isFeatured: false,
-    },
-    {
-      title: 'Achaia Ecosystem',
-      category: 'Regional Signature Direction',
-      text: 'Curated κατεύθυνση για brands, πολιτιστικά concepts, local projects και thematic συνεργασίες με ενιαία αισθητική γλώσσα και στρατηγική συνοχή.',
-      cta: 'Δες το έργο',
-      previewType: 'image',
-      previewLabel: 'Project Placeholder',
-      imageSrc: '',
-      iframeSrc: '',
-      isFeatured: true,
-    },
-    {
-      title: 'Business Web Solutions',
-      category: 'Premium Web Presence',
-      text: 'Showcase placeholder για εταιρικές ιστοσελίδες, eShop λύσεις και business παρουσίες που απαιτούν σοβαρότητα, καθαρότητα και commercial αισθητική.',
-      cta: 'Δες το έργο',
-      previewType: 'iframe',
-      previewLabel: 'Live Preview Area',
-      imageSrc: '',
-      iframeSrc: '',
-      isFeatured: false,
-    },
-    {
-      title: 'Branding & Promotion Concepts',
-      category: 'Brand Expression System',
-      text: 'Επιλεγμένο placeholder για branding, campaigns και visual promotion concepts με ισχυρή αισθητική ταυτότητα και πιο refined εμπορική παρουσίαση.',
+      title: 'Web Host Pro | Αιγιαλεία',
+      category: 'Web Agency Showcase',
+      text: 'Η Web Host Pro στην Αιγιαλεία παρουσιάζει ένα σύγχρονο και επαγγελματικό πλαίσιο ψηφιακών υπηρεσιών, με έμφαση στην κατασκευή ιστοσελίδων, το web hosting, το SEO και το digital marketing.',
       cta: 'Δες το έργο',
       previewType: 'image',
       previewLabel: 'Signature Preview',
-      imageSrc: '',
+      imageSrc: ven1Image,
+      iframeSrc: '',
+      isFeatured: true,
+    },
+    {
+      title: '7 Day Nervous System Reset for Dogs',
+      category: 'Canine Behavior & Wellness Program',
+      text: 'Ένα reset του νευρικού συστήματος για αντιδραστικούς, υπερφορτωμένους σκύλους. Το «7 Day Nervous System Reset for Dogs» εξηγεί γιατί το στρες έχει μεγαλύτερη σημασία από την εκπαίδευση και σου δίνει έναν πρακτικό επταήμερο ρυθμό για να μειώσεις τα ερεθίσματα, να προστατεύσεις την αποκατάσταση και να κατανοήσεις τη συμπεριφορά νωρίτερα.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Visual Showcase',
+      imageSrc: artImage,
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Honeymoon Hotel Santorini',
+      category: 'Hotel Showcase Project',
+      text: 'Premium hotel παρουσίαση με έμφαση στα δωμάτια, τις παροχές και την εμπειρία φιλοξενίας, με καθαρή δομή, elegant αισθητική και conversion-first προσέγγιση.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Project Placeholder',
+      imageSrc: arisImage,
+      iframeSrc: '',
+      isFeatured: true,
+    },
+    {
+      title: 'Εργαστήρι Ζυμαρικών Διακοπτό',
+      category: 'eShop Handmade Pasta Project',
+      text: 'Premium eShop για χειροποίητα ζυμαρικά με έμφαση στη γαστρονομική ταυτότητα, την καθαρή παρουσίαση προϊόντων, την εύκολη αγορά και μια ζεστή artisan αισθητική.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Signature Preview',
+      imageSrc: arg2Image,
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Online Βιβλιοπωλείο Διακοπτό',
+      category: 'eBooks, Audio & Self-Growth Platform',
+      text: 'The Steering Wheel of Our Lives - Finally in Our Hands. Μια σύγχρονη online πλατφόρμα με ebooks, audio περιεχόμενο και επιλεγμένα άρθρα αυτοβελτίωσης, αυτοθεραπείας και αφύπνισης, σχεδιασμένη για όσου...',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: 'Signature Preview',
+      imageSrc: timoniImage,
       iframeSrc: '',
       isFeatured: false,
     },
@@ -349,23 +356,23 @@ export default function HomePage() {
       isFeatured: true,
     },
     {
-      title: 'Tourism Showcase Pages',
-      category: 'Destination Presentation Layouts',
-      text: 'Placeholder ενότητα για τουριστικά showcases και destination pages με elevated design language, ξεκάθαρη ροή περιεχομένου και premium εμπειρία χρήστη.',
+      title: 'Harmony Books | Πλατφόρμα Βιβλίων & Άρθρων',
+      category: 'Books Marketplace & Editorial Content',
+      text: 'Πλατφόρμα για πώληση βιβλίων από διαφορετικούς συγγραφείς, με οργανωμένες κατηγορίες, έξυπνη αναζήτηση και εύκολη εμπειρία αγοράς. Παράλληλα, ενσωματώνει αρθρογραφία και θεματικές ενότητες γύρω από λογοτεχνία, κουλτούρα και κοινωνία, με ξεκάθαρη κατεύθυνση περιεχομένου εκτός πολιτικής θεματολογίας. Ιδιαίτερη έμφαση δίνεται σε βιβλία για αυτοθεραπεία, σύνδεση με τη φύση, πνευματική αφύπνιση και οικολογία, δημιουργώντας μια ουσιαστική βιβλιοθήκη προσωπικής εξέλιξης και οικολογικής συνείδησης.',
       cta: 'Δες το έργο',
       previewType: 'image',
-      previewLabel: 'Visual Showcase',
-      imageSrc: '',
+      previewLabel: '',
+      imageSrc: tt2Image,
       iframeSrc: '',
       isFeatured: false,
     },
     {
-      title: 'Cultural Route Concepts',
-      category: 'Heritage Storytelling Concepts',
-      text: 'Θεματικό placeholder για πολιτιστικές διαδρομές, αφιερώματα και projects που συνδέουν περιεχόμενο, τόπο και σύγχρονη ψηφιακή αφήγηση.',
+      title: 'Art Addicts | Portfolio & Community Platform',
+      category: 'Portfolio & Community Platform',
+      text: 'Το Art Addicts είναι μια ανοιχτή, σύγχρονη πλατφόρμα portfolio και περιεχομένου αφιερωμένη στη ζωγραφική, τη μουσική, την ποίηση και συνολικά σε όλες τις μορφές τέχνης που καλλιεργούν έκφραση και σύνδεση. Το project συνδυάζει δημιουργικά έργα, επιλεγμένη αρθρογραφία, θεματικές ψυχολογίας και πολιτιστικά insights, προσφέροντας έναν ζωντανό ψηφιακό χώρο όπου το κοινό μπορεί να ανακαλύπτει ιδέες, να έρχεται σε επαφή με δημιουργούς και να συμμετέχει ενεργά σε μια κοινότητα έμπνευσης. Με καθαρή δομή, φιλικό UX και ατμοσφαιρική αισθητική, η πλατφόρμα λειτουργεί ως σημείο συνάντησης τέχνης, σκέψης και ανθρώπινης έκφρασης.',
       cta: 'Δες το έργο',
       previewType: 'image',
-      previewLabel: 'Project Placeholder',
+      previewLabel: '',
       imageSrc: '',
       iframeSrc: '',
       isFeatured: false,
@@ -402,6 +409,39 @@ export default function HomePage() {
       imageSrc: '',
       iframeSrc: '',
       isFeatured: true,
+    },
+    {
+      title: 'Coming Soon',
+      category: 'New Project',
+      text: 'Placeholder για νέο project. Σύντομα εδώ.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: '',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Coming Soon',
+      category: 'New Project',
+      text: 'Placeholder για νέο project. Σύντομα εδώ.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: '',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
+    },
+    {
+      title: 'Coming Soon',
+      category: 'New Project',
+      text: 'Placeholder για νέο project. Σύντομα εδώ.',
+      cta: 'Δες το έργο',
+      previewType: 'image',
+      previewLabel: '',
+      imageSrc: '',
+      iframeSrc: '',
+      isFeatured: false,
     },
   ]
 
@@ -683,7 +723,7 @@ export default function HomePage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
           >
-            {portfolioPlaceholderCards.map((card, index) => (
+            {portfolioPlaceholderCards.slice(0, 6).map((card, index) => (
               <motion.div
                 key={card.title}
                 className={`glass service-card group relative flex h-full min-h-[430px] flex-col overflow-hidden rounded-[26px] border p-6 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_42px_rgba(6,14,26,0.44)] ${card.isFeatured ? 'border-amber-300/24 bg-white/[0.05] hover:border-amber-200/46' : 'border-white/10 bg-white/[0.04] hover:border-cyan-200/28'}`}
@@ -726,26 +766,12 @@ export default function HomePage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-200/90">
                   {card.category}
                 </p>
-                <h3 className="mt-3 text-[1.45rem] font-semibold leading-8 text-white/95">
+                <h3 className="mt-3 text-[1.45rem] font-semibold leading-8 text-[#67E8F9]">
                   {card.title}
                 </h3>
                 <p className="mt-4 leading-7 text-white/65">
                   {card.text}
                 </p>
-                {card.projectUrl ? (
-                  <a
-                    href={card.projectUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-cta mt-auto ml-auto pt-6 text-right text-[#67E8F9] transition group-hover:text-amber-100"
-                  >
-                    {card.cta} <ArrowRight size={15} />
-                  </a>
-                ) : (
-                  <span className="inline-cta mt-auto ml-auto pt-6 text-right text-[#67E8F9] group-hover:text-amber-100">
-                    {card.cta} <ArrowRight size={15} />
-                  </span>
-                )}
               </motion.div>
             ))}
           </motion.div>
