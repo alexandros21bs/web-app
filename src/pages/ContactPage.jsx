@@ -1,0 +1,299 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Mail, MapPin, Globe, ArrowRight } from 'lucide-react'
+import Seo from '../components/common/Seo'
+
+const initialState = {
+  name: '',
+  email: '',
+  projectType: '',
+  subject: '',
+  timeline: '',
+  message: '',
+}
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState(initialState)
+  const [errors, setErrors] = useState({})
+  const [status, setStatus] = useState({ type: '', message: '' })
+
+  const validate = (data) => {
+    const nextErrors = {}
+
+    if (data.name.trim().length < 2) {
+      nextErrors.name = 'Συμπλήρωσε ένα σωστό όνομα.'
+    }
+    if (!emailRegex.test(data.email.trim())) {
+      nextErrors.email = 'Συμπλήρωσε έγκυρο email.'
+    }
+    if (data.projectType.trim().length < 2) {
+      nextErrors.projectType = 'Επίλεξε τύπο project.'
+    }
+    if (data.subject.trim().length < 3) {
+      nextErrors.subject = 'Το θέμα χρειάζεται τουλάχιστον 3 χαρακτήρες.'
+    }
+    if (data.message.trim().length < 20) {
+      nextErrors.message = 'Η περιγραφή project πρέπει να έχει τουλάχιστον 20 χαρακτήρες.'
+    }
+
+    return nextErrors
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const validationErrors = validate(formData)
+    setErrors(validationErrors)
+
+    if (Object.keys(validationErrors).length > 0) {
+      setStatus({ type: 'error', message: 'Έλεγξε τα πεδία και δοκίμασε ξανά.' })
+      return
+    }
+
+    setStatus({
+      type: 'success',
+      message:
+        'Ευχαριστούμε για το μήνυμά σας. Θα επικοινωνήσουμε μαζί σας εντός 1 εργάσιμης ημέρας με ξεκάθαρα επόμενα βήματα.',
+    })
+  }
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+    setErrors((prev) => ({ ...prev, [name]: undefined }))
+  }
+
+  return (
+    <section className="section-space">
+      <Seo
+        title="Επικοινωνία"
+        description="Επικοινωνήστε με τη Web Host Pro για website projects, eShop, redesign, hosting/support ή Digital Achaia initiatives."
+        path="/contact"
+      />
+
+      <div className="container-main">
+        <div className="max-w-3xl">
+          <p className="text-sm uppercase tracking-[0.18em] text-cyan-200/80">
+            Επικοινωνία
+          </p>
+          <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
+            Συζητήστε μαζί μας το επόμενο digital project σας
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-white/70">
+            Για website, eShop, redesign, hosting/support ή Digital Achaia
+            regional project, στείλτε μας το brief σας και θα σας απαντήσουμε
+            με ξεκάθαρα επόμενα βήματα και προτεινόμενη κατεύθυνση.
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            <span className="trust-label">Σύγχρονες ψηφιακές λύσεις</span>
+            <span className="trust-label">Στρατηγική παρουσίαση</span>
+            <span className="trust-label">Μοντέρνα online εικόνα</span>
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <div className="glass-strong rounded-[32px] p-8">
+            <h2 className="text-2xl font-semibold">Στείλτε αίτημα συνεργασίας</h2>
+            <p className="mt-3 text-sm leading-6 text-white/60">
+              Συμπληρώστε τα βασικά στοιχεία και το πλαίσιο του project για πιο
+              γρήγορη εκτίμηση και στοχευμένη πρώτη απάντηση.
+            </p>
+
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/70">
+              Τι μπορείτε να μας στείλετε:
+              <br />
+              στόχο project, υπηρεσία που χρειάζεστε, βασικές ανάγκες και επιθυμητό timeline.
+            </div>
+
+            <form className="mt-6 space-y-4" onSubmit={handleSubmit} noValidate>
+              <div>
+                <label htmlFor="name" className="mb-2 block text-sm text-white/80">
+                  Ονοματεπώνυμο
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="π.χ. Μαρία Παπαδοπούλου"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="focus-ring w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35"
+                />
+              </div>
+              {errors.name && <p className="text-sm text-rose-200">{errors.name}</p>}
+
+              <div>
+                <label htmlFor="email" className="mb-2 block text-sm text-white/80">
+                  Email επικοινωνίας
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="π.χ. hello@company.gr"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="focus-ring w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35"
+                />
+              </div>
+              {errors.email && <p className="text-sm text-rose-200">{errors.email}</p>}
+
+              <div>
+                <label htmlFor="projectType" className="mb-2 block text-sm text-white/80">
+                  Τύπος project
+                </label>
+                <select
+                  id="projectType"
+                  name="projectType"
+                  value={formData.projectType}
+                  onChange={handleChange}
+                  className="focus-ring w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white"
+                >
+                  <option value="" className="bg-slate-900 text-white">Επιλέξτε project</option>
+                  <option value="website" className="bg-slate-900 text-white">Website project</option>
+                  <option value="eshop" className="bg-slate-900 text-white">eShop</option>
+                  <option value="redesign" className="bg-slate-900 text-white">Redesign</option>
+                  <option value="hosting-support" className="bg-slate-900 text-white">Hosting / Support</option>
+                  <option value="digital-achaia" className="bg-slate-900 text-white">Digital Achaia / Regional project</option>
+                </select>
+              </div>
+              {errors.projectType && <p className="text-sm text-rose-200">{errors.projectType}</p>}
+
+              <div>
+                <label htmlFor="subject" className="mb-2 block text-sm text-white/80">
+                  Θέμα
+                </label>
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  placeholder="π.χ. Νέα ιστοσελίδα για τουριστικό brand"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="focus-ring w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35"
+                />
+              </div>
+              {errors.subject && <p className="text-sm text-rose-200">{errors.subject}</p>}
+
+              <div>
+                <label htmlFor="timeline" className="mb-2 block text-sm text-white/80">
+                  Επιθυμητό timeline (προαιρετικό)
+                </label>
+                <input
+                  id="timeline"
+                  name="timeline"
+                  type="text"
+                  placeholder="π.χ. launch σε 6-8 εβδομάδες"
+                  value={formData.timeline}
+                  onChange={handleChange}
+                  className="focus-ring w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="mb-2 block text-sm text-white/80">
+                  Σύντομο brief
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  placeholder="Περιγράψτε στόχο, υπηρεσίες που χρειάζεστε και βασικές προτεραιότητες."
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="focus-ring w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/35"
+                />
+                <p className="mt-2 text-xs text-white/45">
+                  Όσο πιο σαφές είναι το brief, τόσο πιο στοχευμένη θα είναι η αρχική μας πρόταση.
+                </p>
+              </div>
+              {errors.message && <p className="text-sm text-rose-200">{errors.message}</p>}
+
+              {status.message && (
+                <p
+                  className={`rounded-xl border px-4 py-3 text-sm ${
+                    status.type === 'success'
+                      ? 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+                      : 'border-rose-300/30 bg-rose-300/10 text-rose-100'
+                  }`}
+                >
+                  {status.message}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="premium-btn btn btn-primary"
+              >
+                Ξεκινήστε συνεργασία
+              </button>
+            </form>
+          </div>
+
+          <div className="glass-strong rounded-[32px] p-8">
+            <h2 className="text-2xl font-semibold">Πλαίσιο συνεργασίας</h2>
+            <p className="mt-3 leading-7 text-white/65">
+              Η Web Host Pro αναλαμβάνει projects που χρειάζονται καθαρό strategic plan,
+              σοβαρή υλοποίηση και μακροπρόθεσμη υποστήριξη.
+            </p>
+
+            <div className="mt-4 rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
+              Χρόνος πρώτης απάντησης: συνήθως εντός 1 εργάσιμης ημέρας.
+            </div>
+
+            <div className="mt-6 space-y-3 text-white/75">
+              {[
+                'Website project για υπηρεσίες ή εταιρική παρουσία',
+                'eShop με έμφαση σε conversion και σωστή δομή περιεχομένου',
+                'Redesign υπάρχοντος site με premium κατεύθυνση',
+                'Hosting, maintenance και τεχνική υποστήριξη',
+                'Digital Achaia / regional identity και destination initiatives',
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-cyan-200/18 bg-cyan-200/6 p-4 text-sm text-cyan-100/85">
+              <div className="flex flex-col gap-2">
+                <span className="icon-text"><Mail size={13} className="shrink-0 text-sky-300" />info@webhostpro.gr</span>
+                <span className="icon-text"><MapPin size={13} className="shrink-0 text-amber-400" />Base: Αχαϊα</span>
+                <span className="icon-text"><Globe size={13} className="shrink-0 text-sky-300" />Digital Achaia powered by Web Host Pro</span>
+              </div>
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              <a href="mailto:info@webhostpro.gr" className="contact-chip"><Mail size={12} /> Email</a>
+              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>Instagram</a>
+              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>Facebook</a>
+              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>LinkedIn</a>
+              <a href="#" className="contact-chip" onClick={(e) => e.preventDefault()}>WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div className="section-end-block">
+          <h2 className="text-2xl font-semibold md:text-3xl">Θέλετε πιο άμεσο επόμενο βήμα;</h2>
+          <p className="mt-3 max-w-3xl text-white/65">
+            Αν δεν είστε ακόμη έτοιμοι για πλήρες brief, δείτε πρώτα τις υπηρεσίες ή το portfolio
+            και επιστρέψτε με πιο συγκεκριμένη κατεύθυνση.
+          </p>
+          <div className="cta-row mt-6">
+            <a href="mailto:info@webhostpro.gr" className="premium-btn btn btn-primary">
+              Μιλήστε μαζί μας
+            </a>
+            <Link to="/digital-achaia" className="premium-btn btn btn-secondary">
+              Ανακαλύψτε την κατεύθυνση
+            </Link>
+            <Link to="/services" className="btn-inline">
+              Δείτε τις υπηρεσίες
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
