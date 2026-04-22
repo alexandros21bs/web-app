@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Mail, MapPin, Globe, Phone, MessageCircle, Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Seo from '../components/common/Seo'
@@ -10,6 +10,8 @@ const initialState = {
   subject: '',
   timeline: '',
   message: '',
+  // honeypot — must stay empty
+  website: '',
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -19,6 +21,7 @@ export default function ContactPage() {
   const [formData, setFormData] = useState(initialState)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState({ type: '', message: '' })
+  const formLoadedAt = useRef(Date.now())
 
   const validate = (data) => {
     const nextErrors = {}
@@ -44,6 +47,23 @@ export default function ContactPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+
+    // Honeypot trap: if filled, silently "succeed" without doing anything.
+    if (formData.website.trim() !== '') {
+      setStatus({
+        type: 'success',
+        message:
+          'Ευχαριστούμε για το μήνυμά σας. Θα επικοινωνήσουμε μαζί σας εντός 1 εργάσιμης ημέρας με ξεκάθαρα επόμενα βήματα.',
+      })
+      return
+    }
+
+    // Time-trap: bots usually submit < 2s after load.
+    if (Date.now() - formLoadedAt.current < 2000) {
+      setStatus({ type: 'error', message: 'Παρακαλώ δοκίμασε ξανά σε λίγο.' })
+      return
+    }
+
     const validationErrors = validate(formData)
     setErrors(validationErrors)
 
@@ -112,6 +132,29 @@ export default function ContactPage() {
             </div>
 
             <form className="mt-6 space-y-4" onSubmit={handleSubmit} noValidate>
+              {/* Honeypot field — hidden from users, visible to bots */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  left: '-9999px',
+                  width: '1px',
+                  height: '1px',
+                  overflow: 'hidden',
+                }}
+              >
+                <label htmlFor="website">Μη συμπληρώσετε αυτό το πεδίο</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={handleChange}
+                />
+              </div>
+
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm text-white/80">
                   Ονοματεπώνυμο
