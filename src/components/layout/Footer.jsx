@@ -12,6 +12,10 @@ export default function Footer() {
             <img
               src={footerLogo}
               alt="Web Host Pro"
+              width="240"
+              height="80"
+              loading="lazy"
+              decoding="async"
               className="h-16 w-auto md:h-20"
             />
             <p className="mt-4 text-sm leading-7 text-white/65">

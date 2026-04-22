@@ -560,6 +560,10 @@ export default function HomePage() {
                 <motion.img
                   src="/images/logo.png"
                   alt="Web Host Pro"
+                  width="600"
+                  height="600"
+                  fetchpriority="high"
+                  decoding="async"
                   className="w-full relative z-10"
                   style={{ filter: 'drop-shadow(0 0 30px rgba(212,168,79,0.25))' }}
                   animate={{

@@ -50,7 +50,7 @@ export default function Header() {
       <div className="container-main">
         <div className={clsx('flex items-center justify-between transition-all duration-400', scrolled ? 'py-3.5' : 'py-4')}>
           <Link to="/" className="group flex items-center gap-3">
-            <img src="/images/logo2.png" alt="Web Host Pro" className="h-14 w-auto" />
+            <img src="/images/logo2.png" alt="Web Host Pro" width="200" height="56" className="h-14 w-auto" />
           </Link>
 
           <nav className="hidden items-center gap-6 md:flex">
