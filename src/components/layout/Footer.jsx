@@ -64,7 +64,12 @@ export default function Footer() {
               </span>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <span className="text-sm font-medium uppercase tracking-[0.14em] text-white/55">Social Media Follow Us</span>
+          <div className="flex flex-wrap gap-2 lg:justify-end">
               <a
                 href="viber://chat?number=%2B306984138488"
                 className="contact-chip h-12 w-12 justify-center p-0"
@@ -88,7 +93,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61574991412567"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-chip h-12 w-12 justify-center p-0"
@@ -100,7 +105,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/webhostpro.gr/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-chip h-12 w-12 justify-center p-0"
@@ -114,7 +119,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@webhostprogr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-chip h-12 w-12 justify-center p-0"
@@ -125,33 +130,39 @@ export default function Footer() {
                   <path d="M21.58 7.19a2.99 2.99 0 0 0-2.11-2.11C17.62 4.5 12 4.5 12 4.5s-5.62 0-7.47.58A2.99 2.99 0 0 0 2.42 7.2 31.3 31.3 0 0 0 2 12c0 1.6.15 3.2.42 4.8a2.99 2.99 0 0 0 2.11 2.11c1.85.58 7.47.58 7.47.58s5.62 0 7.47-.58a2.99 2.99 0 0 0 2.11-2.11c.27-1.6.42-3.2.42-4.8 0-1.6-.15-3.2-.42-4.81ZM10 15.5v-7l6 3.5-6 3.5Z" />
                 </svg>
               </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 flex flex-col gap-1 border-t border-white/10 pt-6 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Web Host Pro Αιγιαλεία. All rights reserved.</span>
-        </div>
-
-        <div className="mt-5 rounded-2xl border border-cyan-200/12 bg-white/[0.03] p-5">
-          <p className="text-xs uppercase tracking-[0.16em] text-amber-200/82">Ecosystem Placeholders</p>
-          <p className="mt-2 text-sm leading-7 text-white/65">
-            Ένα preview από brands, guides και thematic projects που συνδέονται με το οικοσύστημα της Web Host Pro.
-          </p>
-
-          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {['Discover Diakopto', 'Odontotos Project', 'Vouraikos', 'Digital Achaia', 'Web Host Pro'].map((item) => (
-              <div
-                key={item}
-                className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 transition duration-300 hover:border-cyan-200/30"
+              <a
+                href="https://x.com/WebHostProGR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-chip h-12 w-12 justify-center p-0"
+                aria-label="x.com"
+                title="x.com"
               >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-cyan-200/8 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
-                <div className="relative mb-2 h-8 rounded-lg border border-amber-300/20 bg-gradient-to-r from-amber-300/8 via-white/5 to-cyan-300/10" />
-                <p className="relative text-xs uppercase tracking-[0.14em] text-white/72">{item}</p>
-              </div>
-            ))}
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.734-8.835L1.875 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+                </svg>
+              </a>
+              <a
+                href="https://www.tiktok.com/@webhostprogr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-chip h-12 w-12 justify-center p-0"
+                aria-label="TikTok"
+                title="TikTok"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07Z" />
+                </svg>
+              </a>
           </div>
         </div>
+
+        <div className="mt-6 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/45 lg:flex-row lg:items-center lg:justify-between">
+          <span>© {new Date().getFullYear()} Web Host Pro Αιγιαλεία. All rights reserved. | C.E.O Αλέξανδρος Κυβρικοσέος</span>
+          <span className="text-left lg:text-right">Digital Achaia | Τουρισμός • Πολιτισμός • Ψηφιακή Ταυτότητα | <a href="https://digitalachaia.gr" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white/70">Digitalachaia.gr</a> Powered by Web Host Pro</span>
+        </div>
+
+
       </div>
     </footer>
   )

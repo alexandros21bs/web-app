@@ -459,18 +459,18 @@ export default function HomePage() {
         <div className="hero-blob bottom-6 left-[36%] h-52 w-52 bg-emerald-300/24" />
 
         <div className="container-main">
-          <div className="grid items-center gap-10 md:grid-cols-2">
-            <motion.div {...fadeUp}>
+          <div className="grid items-center gap-10 md:grid-cols-[1fr_1fr]">
+            <motion.div {...fadeUp} className="w-full md:mt-[5rem]">
               <span className="badge-gold">
                 Web Host Pro Aigialeia
               </span>
 
-              <h1 className="title-display mt-6 max-w-[24ch] text-[0.88rem] font-normal tracking-wide leading-[1.6] text-white/90 md:text-[1rem]" style={{ fontFamily: "'DM Sans', 'Inter', 'Helvetica Neue', sans-serif", letterSpacing: '0.03em' }}>
+              <h1 className="mt-6 max-w-5xl text-3xl font-semibold leading-[1.14] tracking-[0.01em] text-[#67E8F9] md:text-5xl md:leading-[1.12]">
                 Websites, digital strategy και σύγχρονες λύσεις για σοβαρή online παρουσία.
               </h1>
 
               <p className="mt-7 max-w-xl text-xl leading-9 text-white/70">
-                Κατασκευή ιστοσελίδων, eShop, hosting, τεχνική υποστήριξη, branding και στρατηγική ψηφιακής παρουσίας για επαγγελματίες, επιχειρήσεις και δημιουργικά projects.
+                Κατασκευάζουμε ιστοσελίδες και eShop με αισθητική, λειτουργικότητα και στρατηγική, ώστε κάθε brand να αποκτά σωστή και δυνατή ψηφιακή παρουσία. Με hosting, τεχνική υποστήριξη, branding και ολοκληρωμένες digital λύσεις, βοηθάμε επαγγελματίες, επιχειρήσεις και δημιουργικά projects να χτίσουν μια σύγχρονη και αποτελεσματική online ταυτότητα.
               </p>
 
               <div className="mt-9 flex flex-wrap gap-4">
@@ -495,7 +495,7 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            <div className="flex flex-col items-end gap-6 self-start mt-[2rem]">
+            <div className="mt-[2rem] flex w-full flex-col gap-6 self-start md:-mt-8 md:ml-auto md:max-w-[34rem]">
               {/* Animated Logo — Orbit Particles */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.85, y: 30 }}
@@ -513,7 +513,7 @@ export default function HomePage() {
                   y: { duration: 0.8, ease: 'easeOut', delay: 0.2 },
                   boxShadow: { duration: 5, repeat: Infinity, ease: 'easeInOut' },
                 }}
-                className="relative w-full flex items-center justify-center rounded-full" style={{ minHeight: '320px' }}
+                className="relative flex w-full items-center justify-center self-center rounded-full md:max-w-[32rem]" style={{ minHeight: '340px' }}
               >
                 {/* Orbit ring 1 — gold */}
                 <motion.div
@@ -582,7 +582,7 @@ export default function HomePage() {
               {/* Right panel */}
               <motion.div
               {...fadeUp}
-              className="glass-strong page-glow relative overflow-hidden rounded-[32px] p-6 backdrop-blur-xl border border-white/10 bg-white/5"
+              className="glass-strong page-glow relative w-full overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:-mt-14"
             >
               <div
                 className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(29,143,255,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(0,194,168,0.15),transparent_28%)] opacity-80"
@@ -590,10 +590,10 @@ export default function HomePage() {
               <div className="soft-grid absolute inset-0 opacity-40" />
               <div className="relative grid gap-4">
                 <div className="rounded-3xl border border-white/10 bg-white/6 p-6">
-                  <p className="text-sm uppercase tracking-[0.18em]" style={{ color: '#a5f3fc' }}>
+                  <p className="text-sm uppercase tracking-[0.18em] text-white">
                     Digital Solutions
                   </p>
-                  <h3 className="mt-2 text-2xl font-semibold">
+                  <h3 className="mt-2 text-2xl font-semibold text-[#67E8F9]">
                     Web Development, Hosting, Brand Strategy
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-white/65">
@@ -603,12 +603,12 @@ export default function HomePage() {
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                    <p className="text-sm" style={{ color: '#a5f3fc' }}>Premium Experience</p>
-                    <p className="mt-2 text-lg font-medium">Καθαρό interface, δυνατή ταυτότητα</p>
+                    <p className="text-sm text-white">Premium Experience</p>
+                    <p className="mt-2 text-lg font-medium text-[#67E8F9]">Καθαρό interface, δυνατή ταυτότητα</p>
                   </div>
                   <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                    <p className="text-sm" style={{ color: '#a5f3fc' }}>Digital Achaia</p>
-                    <p className="mt-2 text-lg font-medium">Local vision, digital execution</p>
+                    <p className="text-sm text-white">Digital Achaia</p>
+                    <p className="mt-2 text-lg font-medium text-[#67E8F9]">Local vision, digital execution</p>
                   </div>
                 </div>
               </div>

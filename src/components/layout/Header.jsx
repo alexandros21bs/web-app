@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import navLogo from '../../../12.png'
 
 const navItems = [
   { label: 'Αρχική', to: '/' },
@@ -50,7 +51,7 @@ export default function Header() {
       <div className="container-main">
         <div className={clsx('flex items-center justify-between transition-all duration-400', scrolled ? 'py-3.5' : 'py-4')}>
           <Link to="/" className="group flex items-center gap-3">
-            <img src="/images/logo2.png" alt="Web Host Pro" width="200" height="56" className="h-14 w-auto" />
+            <img src={navLogo} alt="Web Host Pro" width="240" height="80" className="h-16 w-auto" />
           </Link>
 
           <nav className="hidden items-center gap-6 md:flex">
