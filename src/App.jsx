@@ -7,7 +7,7 @@ import Footer from './components/layout/Footer'
 import ScrollToTop from './components/common/ScrollToTop'
 const NeuralNetworkEffect = lazy(() => import('./components/effects/NeuralNetworkEffect'))
 
-const HomePage = lazy(() => import('./pages/HomePage'))
+import HomePage from './pages/HomePage'
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const DigitalAchaiaPage = lazy(() => import('./pages/DigitalAchaiaPage'))
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'))
