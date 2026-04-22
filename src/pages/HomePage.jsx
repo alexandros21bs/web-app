@@ -558,7 +558,7 @@ export default function HomePage() {
 
                 {/* Logo */}
                 <motion.img
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt="Web Host Pro"
                   width="600"
                   height="600"
@@ -739,12 +739,6 @@ export default function HomePage() {
                 {card.previewType === 'iframe' ? (
                   <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl border border-cyan-200/18 bg-gradient-to-br from-cyan-300/12 via-white/5 to-amber-300/8">
                     <div className="absolute inset-3 rounded-xl border border-cyan-200/20 bg-[#0b1525]/75" />
-                    <div className="absolute left-4 top-4 rounded-full border border-cyan-200/25 bg-cyan-200/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-cyan-100/85 shadow-[0_0_20px_rgba(103,232,249,0.12)]">
-                      {card.previewLabel || 'Live Preview Area'}
-                    </div>
-                    <div className="absolute bottom-4 left-4 text-[11px] uppercase tracking-[0.18em] text-white/55">
-                      Ready for iframe embed
-                    </div>
                   </div>
                 ) : (
                   <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br from-amber-300/12 via-white/5 to-cyan-300/10">
@@ -758,12 +752,6 @@ export default function HomePage() {
                     ) : null}
                     <div className="absolute inset-0 opacity-40 [background:linear-gradient(140deg,rgba(255,255,255,0.08),transparent_60%)]" />
                     <div className="absolute inset-2 rounded-xl border border-white/10 bg-white/[0.02] shadow-[inset_0_0_26px_rgba(103,232,249,0.08)]" />
-                    <div className="absolute left-4 top-4 rounded-full border border-amber-200/28 bg-amber-200/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-amber-100/88 shadow-[0_0_20px_rgba(212,168,79,0.14)]">
-                      {card.previewLabel || 'Screenshot Placeholder'}
-                    </div>
-                    <div className="absolute bottom-4 left-4 text-[11px] uppercase tracking-[0.18em] text-white/55">
-                      {index % 2 === 0 ? 'Project visual area' : 'Screenshot / mockup slot'}
-                    </div>
                   </div>
                 )}
 
