@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Routes, Route, useLocation, Link } from 'react-router-dom'
 import { ChevronUp } from 'lucide-react'
@@ -7,12 +7,12 @@ import Footer from './components/layout/Footer'
 import ScrollToTop from './components/common/ScrollToTop'
 import NeuralNetworkEffect from './components/effects/NeuralNetworkEffect'
 
-import HomePage from './pages/HomePage'
-import ServicesPage from './pages/ServicesPage'
-import DigitalAchaiaPage from './pages/DigitalAchaiaPage'
-import ProjectsPage from './pages/ProjectsPage'
-import AboutPage from './pages/AboutPage'
-import ContactPage from './pages/ContactPage'
+const HomePage = lazy(() => import('./pages/HomePage'))
+const ServicesPage = lazy(() => import('./pages/ServicesPage'))
+const DigitalAchaiaPage = lazy(() => import('./pages/DigitalAchaiaPage'))
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
 
 const dayNames = ['Κυρ', 'Δευ', 'Τρί', 'Τετ', 'Πέμ', 'Παρ', 'Σάβ']
 const monthNames = ['Ιαν', 'Φεβ', 'Μαρ', 'Απρ', 'Μάι', 'Ιούν', 'Ιούλ', 'Αύγ', 'Σεπ', 'Οκτ', 'Νοέ', 'Δεκ']
@@ -173,14 +173,16 @@ export default function App() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.32, ease: 'easeOut' }}
           >
-            <Routes location={location}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/digital-achaia" element={<DigitalAchaiaPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-            </Routes>
+            <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+              <Routes location={location}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/digital-achaia" element={<DigitalAchaiaPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+              </Routes>
+            </Suspense>
           </motion.div>
         </AnimatePresence>
       </main>
