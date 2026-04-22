@@ -5,7 +5,7 @@ import { ChevronUp } from 'lucide-react'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/common/ScrollToTop'
-import NeuralNetworkEffect from './components/effects/NeuralNetworkEffect'
+const NeuralNetworkEffect = lazy(() => import('./components/effects/NeuralNetworkEffect'))
 
 const HomePage = lazy(() => import('./pages/HomePage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
@@ -113,7 +113,9 @@ export default function App() {
   return (
     <div className="relative min-h-screen overflow-x-clip">
       <div className="global-neural-bg" aria-hidden="true">
-        <NeuralNetworkEffect mode="background" />
+        <Suspense fallback={null}>
+          <NeuralNetworkEffect mode="background" />
+        </Suspense>
       </div>
       <div className="top-bar">
         <div className="top-bar-inner">
