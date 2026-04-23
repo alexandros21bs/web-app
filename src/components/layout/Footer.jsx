@@ -28,7 +28,7 @@ export default function Footer() {
             <div className="mt-3 flex flex-col gap-2 text-sm text-white/65">
               <Link className="footer-link icon-text" to="/"><Globe size={13} />Αρχική</Link>
               <Link className="footer-link icon-text" to="/services"><ArrowRight size={13} />Υπηρεσίες</Link>
-              <Link className="footer-link icon-text" to="/"><ArrowRight size={13} />Portfolio Highlights</Link>
+              <Link className="footer-link icon-text" to="/projects"><ArrowRight size={13} />Portfolio Highlights</Link>
               <Link className="footer-link icon-text" to="/digital-achaia"><MapPin size={13} />Digital Achaia</Link>
               <Link className="footer-link icon-text" to="/projects"><ArrowRight size={13} />Έργα</Link>
               <Link className="footer-link icon-text" to="/contact"><Mail size={13} />Επικοινωνία</Link>

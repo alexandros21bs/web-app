@@ -48,7 +48,7 @@ html {
 body {
   margin: 0;
   color: var(--text);
-  font-family: Inter, system-ui, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
   background:
     radial-gradient(circle at top left, rgba(29, 143, 255, 0.15), transparent 30%),
     radial-gradient(circle at top right, rgba(212, 168, 79, 0.07), transparent 28%),

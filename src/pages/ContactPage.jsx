@@ -21,6 +21,7 @@ export default function ContactPage() {
   const [formData, setFormData] = useState(initialState)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState({ type: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const formLoadedAt = useRef(0)
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function ContactPage() {
     return nextErrors
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     // Honeypot trap: if filled, silently "succeed" without doing anything.
@@ -76,11 +77,32 @@ export default function ContactPage() {
       return
     }
 
-    setStatus({
-      type: 'success',
-      message:
-        'Ευχαριστούμε για το μήνυμά σας. Θα επικοινωνήσουμε μαζί σας εντός 1 εργάσιμης ημέρας με ξεκάθαρα επόμενα βήματα.',
-    })
+    setIsSubmitting(true)
+    setStatus({ type: '', message: '' })
+
+    try {
+      const res = await fetch('/api/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const data = await res.json()
+
+      if (data.ok) {
+        setStatus({
+          type: 'success',
+          message:
+            'Ευχαριστούμε για το μήνυμά σας. Θα επικοινωνήσουμε μαζί σας εντός 1 εργάσιμης ημέρας με ξεκάθαρα επόμενα βήματα.',
+        })
+        setFormData(initialState)
+      } else {
+        setStatus({ type: 'error', message: data.error || 'Κάτι πήγε στραβά. Δοκιμάστε ξανά.' })
+      }
+    } catch {
+      setStatus({ type: 'error', message: 'Αποτυχία σύνδεσης. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.' })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (event) => {
@@ -276,9 +298,10 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="premium-btn btn btn-primary"
+                disabled={isSubmitting}
+                className="premium-btn btn btn-primary disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Ξεκινήστε συνεργασία
+                {isSubmitting ? 'Αποστολή…' : 'Ξεκινήστε συνεργασία'}
               </button>
             </form>
           </div>
