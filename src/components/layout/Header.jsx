@@ -35,9 +35,13 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    setOpen(false)
-  }, [location.pathname])
+  // Reset mobile menu state when route changes ("Adjusting state when prop changes"
+  // pattern from React docs — avoids setState inside an effect).
+  const [prevPath, setPrevPath] = useState(location.pathname)
+  if (prevPath !== location.pathname) {
+    setPrevPath(location.pathname)
+    if (open) setOpen(false)
+  }
 
   return (
     <header

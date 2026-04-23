@@ -46,7 +46,7 @@ export default function HomePage() {
     setPreviewModal((prev) => ({ ...prev, open: false }))
   }
 
-  const homeServices = [
+  const _homeServices = [
     {
       key: 'websites-eshop',
       title: 'Ιστοσελίδες & eShop',
@@ -727,7 +727,7 @@ export default function HomePage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
           >
-            {portfolioPlaceholderCards.slice(0, 6).map((card, index) => (
+            {portfolioPlaceholderCards.slice(0, 6).map((card) => (
               <motion.div
                 key={card.title}
                 className={`glass service-card group relative flex h-full min-h-[430px] flex-col overflow-hidden rounded-[26px] border p-6 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_42px_rgba(6,14,26,0.44)] ${card.isFeatured ? 'border-amber-300/24 bg-white/[0.05] hover:border-amber-200/46' : 'border-white/10 bg-white/[0.04] hover:border-cyan-200/28'}`}

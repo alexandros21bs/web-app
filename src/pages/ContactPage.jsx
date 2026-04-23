@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Mail, MapPin, Globe, Phone, MessageCircle, Send, ArrowRight, ArrowLeft } from 'lucide-react'
 import Seo from '../components/common/Seo'
@@ -21,7 +21,11 @@ export default function ContactPage() {
   const [formData, setFormData] = useState(initialState)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState({ type: '', message: '' })
-  const formLoadedAt = useRef(Date.now())
+  const formLoadedAt = useRef(0)
+
+  useEffect(() => {
+    formLoadedAt.current = Date.now()
+  }, [])
 
   const validate = (data) => {
     const nextErrors = {}
