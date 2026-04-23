@@ -173,8 +173,8 @@ export default function ServicesPage() {
   return (
     <section className="section-space">
       <Seo
-        title="Υπηρεσίες"
-        description="Υπηρεσίες Web Host Pro: websites, eShop, hosting, support, SEO, branding και strategic digital execution για σύγχρονα brands."
+        title="Υπηρεσίες: Website, Hosting & SEO"
+        description="Websites, eShop, hosting, SSL, SEO, branding, social media και digital campaigns. Πλήρεις υπηρεσίες digital παρουσίας από τη Web Host Pro."
         path="/services"
       />
 

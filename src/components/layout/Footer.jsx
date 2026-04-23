@@ -158,7 +158,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-6 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/45 lg:flex-row lg:items-center lg:justify-between">
-          <span>© {new Date().getFullYear()} Web Host Pro Αιγιαλεία. All rights reserved. | C.E.O Αλέξανδρος Κυβρικοσέος</span>
+          <span>
+            © {new Date().getFullYear()} Web Host Pro Αιγιαλεία. All rights reserved. | C.E.O Αλέξανδρος Κυβρικοσέος
+            {' '}&mdash;{' '}
+            <Link to="/privacy" className="transition-colors hover:text-white/70">Πολιτική Απορρήτου</Link>
+          </span>
           <span className="text-left lg:text-right">Digital Achaia | Τουρισμός • Πολιτισμός • Ψηφιακή Ταυτότητα | <a href="https://digitalachaia.gr" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white/70">Digitalachaia.gr</a> Powered by Web Host Pro</span>
         </div>
 

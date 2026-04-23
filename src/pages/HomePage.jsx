@@ -342,8 +342,8 @@ export default function HomePage() {
   return (
     <>
       <Seo
-        title="Websites, Hosting, Digital Strategy"
-        description="Web Host Pro: websites, eShop, hosting, branding και στρατηγική digital παρουσία με premium αισθητική και επιχειρηματική στόχευση."
+        title="Websites, eShop & Hosting Αιγιαλεία"
+        description="Web Host Pro: κατασκευή websites, eShop, hosting, branding και digital strategy για επιχειρήσεις στην Αιγιαλεία και όλη την Ελλάδα. Ξεκινήστε σήμερα."
         path="/"
       />
 

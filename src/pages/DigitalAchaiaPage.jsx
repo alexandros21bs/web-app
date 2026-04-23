@@ -428,8 +428,8 @@ export default function DigitalAchaiaPage() {
     <>
     <section className="section-space">
       <Seo
-        title="Digital Achaia"
-        description="Digital Achaia: regional identity initiative powered by Web Host Pro για πολιτισμό, τουρισμό, local projects και στρατηγική ψηφιακή αφήγηση."
+        title="Digital Achaia — Τουρισμός & Πολιτισμός"
+        description="Digital Achaia: ψηφιακή αφήγηση για τουρισμό, πολιτισμό και τοπική ταυτότητα στην Αχαΐα. Initiative powered by Web Host Pro."
         path="/digital-achaia"
       />
 

@@ -14,6 +14,8 @@ const ProjectsPage = lazy(() => import('./pages/ProjectsPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'))
+import CookieBanner from './components/common/CookieBanner'
 
 const dayNames = ['Κυρ', 'Δευ', 'Τρί', 'Τετ', 'Πέμ', 'Παρ', 'Σάβ']
 const monthNames = ['Ιαν', 'Φεβ', 'Μαρ', 'Απρ', 'Μάι', 'Ιούν', 'Ιούλ', 'Αύγ', 'Σεπ', 'Οκτ', 'Νοέ', 'Δεκ']
@@ -187,6 +189,7 @@ export default function App() {
                 <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Suspense>
@@ -196,6 +199,7 @@ export default function App() {
       <Footer />
 
       <ScrollToTopButton />
+      <CookieBanner />
     </div>
   )
 }

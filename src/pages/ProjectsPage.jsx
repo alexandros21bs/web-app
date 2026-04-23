@@ -262,8 +262,8 @@ export default function ProjectsPage() {
       <div className="pointer-events-none absolute right-0 top-16 h-80 w-80 rounded-full bg-amber-300/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-6 left-1/3 h-64 w-64 rounded-full bg-cyan-200/8 blur-3xl" />
       <Seo
-        title="Projects"
-        description="Portfolio Web Host Pro και Digital Achaia με selected projects, destination concepts και στρατηγικές digital κατευθύνσεις."
+        title="Portfolio & Έργα | Web Host Pro"
+        description="Δείτε selected projects Web Host Pro: εταιρικά websites, eShop, destination brands και Digital Achaia initiatives. Πραγματικά αποτελέσματα."
         path="/projects"
       />
 

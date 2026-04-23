@@ -114,8 +114,8 @@ export default function ContactPage() {
   return (
     <section className="section-space">
       <Seo
-        title="Επικοινωνία"
-        description="Επικοινωνήστε με τη Web Host Pro για website projects, eShop, redesign, hosting/support ή Digital Achaia initiatives."
+        title="Επικοινωνία — Ξεκινήστε το Project σας"
+        description="Στείλτε το brief σας στη Web Host Pro για website, eShop, redesign ή hosting. Πρώτη απάντηση εντός 1 εργάσιμης ημέρας."
         path="/contact"
       />
 

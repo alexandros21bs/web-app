@@ -8,8 +8,8 @@ export default function AboutPage() {
   return (
     <section className="section-space">
       <Seo
-        title="Σχετικά"
-        description="Η Web Host Pro προσφέρει σύγχρονη στρατηγική digital παρουσία με καθαρό design, hosting, branding και Digital Achaia initiatives."
+        title="Ποιοι Είμαστε — Web Host Pro"
+        description="Web Host Pro Αιγιαλεία: δημιουργούμε επαγγελματικές digital παρουσίες για επιχειρήσεις, brands και projects με καθαρό design και τεχνική σοβαρότητα."
         path="/about"
       />
 
