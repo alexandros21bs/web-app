@@ -1981,3 +1981,10 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Responsive Top Bar ── */
+@media (max-width: 1023px) {
+  .top-bar-right {
+    display: none;
+  }
+}

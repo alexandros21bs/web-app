@@ -55,10 +55,10 @@ export default function Header() {
       <div className="container-main">
         <div className={clsx('flex items-center justify-between transition-all duration-400', scrolled ? 'py-3.5' : 'py-4')}>
           <Link to="/" className="group flex items-center gap-3">
-            <img src={navLogo} alt="Web Host Pro" width="240" height="80" className="h-16 w-auto" />
+            <img src={navLogo} alt="Web Host Pro" width="240" height="80" className="h-12 w-auto lg:h-16" />
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -87,7 +87,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-4 md:flex">
+          <div className="hidden items-center gap-4 lg:flex">
             {/* Language switcher */}
             <div className="flex items-center overflow-hidden rounded-full border border-white/15 bg-white/5 text-sm font-semibold tracking-wide backdrop-blur-sm">
               <button className="relative px-3.5 py-1.5 text-cyan-200 bg-transparent transition-all duration-300 hover:bg-white/8">
@@ -123,7 +123,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 p-2 text-white transition hover:border-cyan-200/35 md:hidden"
+            className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 p-2 text-white transition hover:border-cyan-200/35 lg:hidden"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -136,7 +136,7 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="glass-strong soft-grid mb-4 overflow-hidden rounded-2xl p-4 md:hidden"
+              className="glass-strong soft-grid mb-4 overflow-hidden rounded-2xl p-4 lg:hidden"
             >
               <div className="flex flex-col gap-2">
                 {navItems.map((item) => (
